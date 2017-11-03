@@ -4,14 +4,13 @@
 * This is a very basic example of how to send data from one node to another
 * Updated: Dec 2014 by TMRh20
 */
-
-#include <SPI.h>
 #include <printf.h>
+#include <SPI.h>
 #include "RF24.h"
 
 /****************** User Config ***************************/
 /***      Set this radio as radio number 0 or 1         ***/
-bool radioNumber = 1;
+bool radioNumber = 0;
 
 /* Hardware configuration: Set up nRF24L01 radio on SPI bus plus pins 7 & 8 */
 RF24 radio(9,10);
@@ -43,9 +42,9 @@ void setup() {
   }
   
   // Start the radio listening for data
-  // printf_begin();
-  // radio.printDetails();
-  // radio.startListening();
+  printf_begin();
+  radio.printDetails();
+  radio.startListening();
 }
 
 void loop() {
@@ -59,8 +58,10 @@ if (role == 1)  {
     
     Serial.println(F("Now sending"));
 
-    unsigned long start_time = micros();                             // Take the time, and send it.  This will block until complete
-     if (!radio.write( &start_time, sizeof(unsigned long) )){
+    unsigned long msg[10] = {0,1,2};                             // Take the time, and send it.  This will block until complete
+    int msglen = 10;
+    unsigned long start_time = micros(); 
+     if (!radio.write( msg, msglen*sizeof(unsigned long))){
        Serial.println(F("failed"));
      }
         
@@ -142,4 +143,5 @@ if (role == 1)  {
 
 
 } // Loop
+
 
