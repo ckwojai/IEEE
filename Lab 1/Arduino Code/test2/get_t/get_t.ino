@@ -4,16 +4,16 @@
 * This is a very basic example of how to send data from one node to another
 * Updated: Dec 2014 by TMRh20
 */
-
+#include <printf.h>
 #include <SPI.h>
 #include "RF24.h"
 
 /****************** User Config ***************************/
 /***      Set this radio as radio number 0 or 1         ***/
-bool radioNumber = 1;
+bool radioNumber = 0;
 
 /* Hardware configuration: Set up nRF24L01 radio on SPI bus plus pins 7 & 8 */
-RF24 radio(7,8);
+RF24 radio(9,10);
 /**********************************************************/
 
 byte addresses[][6] = {"1Node","2Node"};
@@ -22,7 +22,7 @@ byte addresses[][6] = {"1Node","2Node"};
 bool role = 0;
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
   Serial.println(F("RF24/examples/GettingStarted"));
   Serial.println(F("*** PRESS 'T' to begin transmitting to the other node"));
   
@@ -42,6 +42,7 @@ void setup() {
   }
   
   // Start the radio listening for data
+  printf_begin();
   radio.printDetails();
   radio.startListening();
 }

@@ -6,34 +6,35 @@
 */
 
 #include <SPI.h>
+#include <printf.h>
 #include "RF24.h"
 
 /****************** User Config ***************************/
 /***      Set this radio as radio number 0 or 1         ***/
-bool radioNumber = 0;
+bool radioNumber = 1;
 
 /* Hardware configuration: Set up nRF24L01 radio on SPI bus plus pins 7 & 8 */
-RF24 radio(7,8);
+RF24 radio(9,10);
 /**********************************************************/
 
-byte addresses[][6] = {"1Node","f2Node"};
+byte addresses[][6] = {"1Node","2Node"};
 
 // Used to control whether this node is sending or receiving
 bool role = 0;
 
 void setup() {
   Serial.begin(9600);
-  // radio.printDetails();
   Serial.println(F("RF24/examples/GettingStarted"));
   Serial.println(F("*** PRESS 'T' to begin transmitting to the other node"));
+  
   radio.begin();
-  radio.setChannel(16);
+  radio.setChannel(16); 
   // Set the PA Level low to prevent power supply related issues since this is a
  // getting_started sketch, and the likelihood of close proximity of the devices. RF24_PA_MAX is default.
   radio.setPALevel(RF24_PA_LOW);
   
   // Open a writing and reading pipe on each radio, with opposite addresses
-   if(radioNumber){
+  if(radioNumber){
     radio.openWritingPipe(0xE7E7E7E7E7);
     radio.openReadingPipe(1,0xC2C2C2C2C2);
   }else{
@@ -41,9 +42,9 @@ void setup() {
     radio.openReadingPipe(1,0xE7E7E7E7E7);
   }
   
-  
   // Start the radio listening for data
-  
+  printf_begin();
+  radio.printDetails();
   radio.startListening();
 }
 
