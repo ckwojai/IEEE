@@ -9,7 +9,7 @@ void setup() {
   // put your setup code here, to run once: 
   Serial.begin(9600);
   radio.begin();
-  radio.setChannel(20);
+  radio.setChannel(16);
   radio.setPALevel(RF24_PA_LOW);
   radio.openReadingPipe(1, 0xE7E7E7E7E7);
   radio.openWritingPipe(0xC2C2C2C2C2);

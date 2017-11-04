@@ -21,12 +21,11 @@ void setup() {
   // put your setup code here, to run once: 
   Serial.begin(9600);
   radio.begin();
-  radio.setChannel(20);
+  radio.setChannel(16);
   radio.setPALevel(RF24_PA_LOW);
-  radio.openReadingPipe(1, 0xC2C2C2C2C2);
-  radio.openWritingPipe(0xE7E7E7E7E7);
+  radio.openReadingPipe(1, 0xE7E7E7E7E7);
+  radio.openWritingPipe(0xC2C2C2C2C2);
   radio.setCRCLength(RF24_CRC_16);
-  radio.setRetries(15,15);  
   printf_begin();
   radio.printDetails();
   seq[0] = 0; //seq = r y g r y g r y g r
@@ -43,29 +42,34 @@ void setup() {
   //   seq[i] = rand() % 3;
   // }
   for (int i = 0; i < 10; i++) {
-    Serial.println(seq[i]);
+    Serial.print(seq[i]);
   }
+  Serial.println("");
   pinMode(ledPin_r, OUTPUT);
   pinMode(ledPin_y, OUTPUT);
   pinMode(ledPin_g, OUTPUT);
-
+  Serial.println(counter);
+  Serial.println(state);
 }
 
 void loop() {
   if (game_state == 0) {
+    /* for (int i = 0; i < state; i++) { */
+    /*   Serial.print(seq[i]); */
+    /* } */
     unsigned long currentMillis = millis();
     // Turning off LEDs
     if (counter < state) { 
       if(currentMillis - previousMillis > interval) {
 	if (counter != 0) {
 	  Serial.println("TURNING OFF LEDs");
-	  if (seq[counter-1] == 0) {	// Light up the red
+	  if (seq[counter-1] == 0) {	// Turning OFF the red
 	    ledState_r = LOW;
 	    digitalWrite(ledPin_r, ledState_r);
-	  } else if (seq[counter-1] == 1) { // Light up the yellow
+	  } else if (seq[counter-1] == 1) { // Turning OFF the yellow
 	    ledState_y = LOW;
 	    digitalWrite(ledPin_y, ledState_y);
-	  } else if (seq[counter-1] == 2) { // Light up the green
+	  } else if (seq[counter-1] == 2) { // Turning OFF the green
 	    ledState_g = LOW;
 	    digitalWrite(ledPin_g, ledState_g);
 	  }
@@ -74,7 +78,6 @@ void loop() {
 	// ==================================================
 	// Turning on LEDs
 	// ==================================================
-	Serial.println("TURNING ON LEDs");
 	// save the last time you blinked the LED 
 	previousMillis = currentMillis;   
 	// if the LED is off turn it on and vice-versa:
@@ -82,18 +85,21 @@ void loop() {
 	  counter++;
 	  ledState_r = HIGH;
 	  digitalWrite(ledPin_r, ledState_r);
+	  Serial.println("RED UP");
 	} else if (seq[counter] == 1) { // Light up the yellow
 	  counter++;
 	  ledState_y = HIGH;
 	  digitalWrite(ledPin_y, ledState_y);
+	  Serial.println("Yellow UP");
 	} else if (seq[counter] == 2) { // Light up the green
 	  counter++;
 	  ledState_g = HIGH;
 	  digitalWrite(ledPin_g, ledState_g);
+	  Serial.println("Green UP");
 	}
       }
     } else {
-      Serial.println("TURNING OFF LEDs");
+      delay(1000);
       if (seq[counter-1] == 0) {	// Light up the red
 	ledState_r = LOW;
 	digitalWrite(ledPin_r, ledState_r);
@@ -104,18 +110,9 @@ void loop() {
 	ledState_g = LOW;
 	digitalWrite(ledPin_g, ledState_g);
       }
-      // Next Game State
-      // delay(500);
-      // digitalWrite(ledPin_r, HIGH);
-      // digitalWrite(ledPin_y, HIGH);
-      // digitalWrite(ledPin_g, HIGH);
-      // delay(500);
-      // digitalWrite(ledPin_r, LOW);
-      // digitalWrite(ledPin_y, LOW);
-      // digitalWrite(ledPin_g, LOW);
-      // delay(500);
       counter = 0;	
       game_state = 1;
+      sent_state = 0;
     }
   }
   // ======================================================================
@@ -124,13 +121,13 @@ void loop() {
   if (game_state == 1) {
     if (sent_state == 0) {
       Serial.println("Now sending");
-      if (!radio.write( &seq, sizeof(seq) )){
+      radio.stopListening();
+      if (!radio.write( &seq[state-1], sizeof(seq) )){
 	Serial.println("Failed");
       }
       else {
 	Serial.println("Success");
       }
-      delay(2000);
       sent_state = 1;
     } else if (sent_state == 1) {
       radio.startListening();
@@ -162,9 +159,9 @@ void loop() {
 	  Serial.println("Matched");
 	  counter = 0;
 	  state +=1;
-	  if (state == 10){
-	    state = 9;
-	  }
+	  /* if (state == 10){ */
+	  /*   state = 9; */
+	  /* } */
 	}
       }
       delay(2000); 
