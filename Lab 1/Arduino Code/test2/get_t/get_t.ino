@@ -120,7 +120,7 @@ if (role == 1)  {
 
 
 
-
+p
 /****************** Change Roles via Serial Commands ***************************/
 
   if ( Serial.available() )
