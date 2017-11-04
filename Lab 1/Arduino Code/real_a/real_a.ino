@@ -17,7 +17,7 @@
   - pushbutton attached to pin 2 from +5V
   - 10 kilohm resistor attached to pin 2 from ground
   - LED attached from pin 13 to ground (or use the built-in LED on most
-    Arduino boards)
+  Arduino boards)
 
   created  27 Sep 2005
   modified 30 Aug 2011
@@ -47,8 +47,8 @@ int lastButtonState_y = 0;     // previous state of the button
 int lastButtonState_g = 0;     // previous state of the button
 
 boolean match = false;
-unsigned long pattern[10];
-unsigned long pattern_r[10] = {4,4,4,4,4,4,4,4,4,4};
+unsigned long pattern[10] = {4,4,4,4,4,4,4,4,4,4};
+unsigned long pattern_r[10] = {5,5,5,5,5,5,5,5,5,5};
 // unsigned long pattern_r[10];
 int state = 1;
 int game_state = 0; 		/* 0 = listening mode; 1 = button mode */
@@ -65,140 +65,141 @@ void setup() {
   // initialize serial communication:
   Serial.begin(9600);
   radio.begin();
-  radio.setChannel(20);
+  radio.setChannel(16);
   radio.setPALevel(RF24_PA_LOW);
-  radio.openReadingPipe(1, 0xC2C2C2C2C2);
-  radio.openWritingPipe(0xE7E7E7E7E7);
+  radio.openReadingPipe(1, 0xE7E7E7E7E7);
+  radio.openWritingPipe(0xC2C2C2C2C2);
   radio.setCRCLength(RF24_CRC_16);
   printf_begin();
   radio.printDetails();
   for (int i = 0; i < 10; i++) {
     Serial.print(pattern_r[i]);
-    } 
+  } 
   Serial.println("");
   for (int i = 0; i < 10; i++) {
     Serial.print(pattern[i]);
   } 
 }
-
-
-
 void loop() {
   if (game_state == 0) {
-  // read the pushbutton input pin:
-  radio.startListening();
+    // read the pushbutton input pin:
+    radio.startListening();
     if( radio.available()){
       match = false;
-      game_state == 1;
       // pc = 0;
       // Variable for the received timestamp
       while (radio.available()) {                                   // While there is data ready
-        radio.read( &pattern_r, sizeof(unsigned long) );             // Get the payload
+        radio.read( (&pattern_r[state-1]),sizeof(unsigned long) );             // Get the payload
       }
       Serial.print("Message received: the pattery is\n");
+      game_state = 1;
       radio.stopListening();                                        // First, stop listening so we can talk 
       for (int i = 0; i < 10; i++) {
 	Serial.print(pattern_r[i]);
       } 
     }
-  } else if (game_state == 0) {
-  buttonState_r = digitalRead(buttonPin_r);
-  buttonState_y = digitalRead(buttonPin_y);
-  buttonState_g = digitalRead(buttonPin_g);
-  // compare the buttonState to its previous state
-  if (buttonState_r != lastButtonState_r) {
-    // if the state has changed, increment the counter
-    if (buttonState_r == HIGH) {
-      // if the current state is HIGH then the button went from off to on:
-      buttonPushCounter_r++;
-      Serial.print("on_r: ");
-      pattern[pc] = 0;
-      pc++;
-      for (int i = 0; i < pc; i++) {
-	Serial.print(pattern[i]);
-      } 
+  } else if (game_state == 1) {
+    buttonState_r = digitalRead(buttonPin_r);
+    buttonState_y = digitalRead(buttonPin_y);
+    buttonState_g = digitalRead(buttonPin_g);
+    // compare the buttonState to its previous state
+    if (buttonState_r != lastButtonState_r) {
+      // if the state has changed, increment the counter
+      if (buttonState_r == HIGH) {
+	// if the current state is HIGH then the button went from off to on:
+	buttonPushCounter_r++;
+	Serial.print("on_r: ");
+	pattern[pc] = 0;
+	pc++;
+	for (int i = 0; i < pc; i++) {
+	  Serial.print(pattern[i]);
+	} 
 
-      Serial.println("");
-    } 
-    // Delay a little bit to avoid bouncing
-    delay(50);
-  }
-  if (buttonState_y != lastButtonState_y) {
-    // if the state has changed, increment the counter
-    if (buttonState_y == HIGH) {
-      // if the current state is HIGH then the button went from off to on:
-      buttonPushCounter_y++;
-      Serial.print("on_y: ");
-      pattern[pc] = 1;
-      pc++;
-      for (int i = 0; i < pc; i++) {
-	Serial.print(pattern[i]);
+	Serial.println("");
       } 
-      Serial.println("");
+      // Delay a little bit to avoid bouncing
+      delay(50);
     }
+    if (buttonState_y != lastButtonState_y) {
+      // if the state has changed, increment the counter
+      if (buttonState_y == HIGH) {
+	// if the current state is HIGH then the button went from off to on:
+	buttonPushCounter_y++;
+	Serial.print("on_y: ");
+	pattern[pc] = 1;
+	pc++;
+	for (int i = 0; i < pc; i++) {
+	  Serial.print(pattern[i]);
+	} 
+	Serial.println("");
+      }
 
-    // Delay a little bit to avoid bouncing
-    delay(50);
-  }
-  if (buttonState_g != lastButtonState_g) {
-    // if the state has changed, increment the counter
-    if (buttonState_g == HIGH) {
-      // if the current state is HIGH then the button went from off to on:
-      buttonPushCounter_g++;
-      Serial.print("on_g: ");
-      pattern[pc] = 2;
-      pc++;      
-      for (int i = 0; i < pc; i++) {
-	Serial.print(pattern[i]);
+      // Delay a little bit to avoid bouncing
+      delay(50);
+    }
+    if (buttonState_g != lastButtonState_g) {
+      // if the state has changed, increment the counter
+      if (buttonState_g == HIGH) {
+	// if the current state is HIGH then the button went from off to on:
+	buttonPushCounter_g++;
+	Serial.print("on_g: ");
+	pattern[pc] = 2;
+	pc++;      
+	for (int i = 0; i < pc; i++) {
+	  Serial.print(pattern[i]);
+	} 
+	Serial.println("");
       } 
-      Serial.println("");
-    } 
 
-    // Delay a little bit to avoid bouncing
-    delay(50);
-  }
-  // save the current state as the last state, for next time through the loop
-  lastButtonState_r = buttonState_r;
-  lastButtonState_y = buttonState_y;
-  lastButtonState_g = buttonState_g;
-  // ==================================================
-  // CHECKING if pattern == pattern_r
-  // ==================================================
-  boolean temp = true;
-  for (int i = 0; i < state; i++) {
-    if (pattern[i] != pattern_r[i]) {
+      // Delay a little bit to avoid bouncing
+      delay(50);
+    }
+    // save the current state as the last state, for next time through the loop
+    lastButtonState_r = buttonState_r;
+    lastButtonState_y = buttonState_y;
+    lastButtonState_g = buttonState_g;
+    // ==================================================
+    // CHECKING if pattern == pattern_r
+    // ==================================================
+    boolean temp = true;
+    for (int i = 0; i < state; i++) {
+      if (pattern[i] != pattern_r[i]) {
 	temp = false;
       }
-  }
-  match = temp;
+    }
+    match = temp;
   
-  if (match == true) {
-    Serial.println("Pattern Matched; Reporting...");
-    radio.stopListening();
-     if (!radio.write(&match, sizeof(match) )){
-       Serial.println("Failed");
-     }   
-     match = false;
-     // reseting
-     for (int i = 0; i < pc; i++) {
-       pattern[i] = 4;
-     }
-     pc = 0;
-     state += 1;
-     game_state = 0;
-  }
-  // ==================================================
-  // CHECKING if pattern == pattern_r
-  // ==================================================
-  if (pc >= state) {
-    Serial.println("Pattern UnMatched; Reporting...");
-    radio.stopListening();
-    if (!radio.write(&match, sizeof(match) )){
-       // Serial.println("Failed");
-    }   
-    pc = 0;
-    state = 1;
-    game_state = 0;
-  }
+    if (match == true) {
+      Serial.println("Pattern Matched; Reporting...");
+      radio.stopListening();
+      if (!radio.write(&match, sizeof(match) )){
+	Serial.println("Failed");
+      }   
+      match = false;
+      for (int i = 0; i < pc; i++) {
+	pattern[i] = 4;
+      }
+
+      // reseting
+      pc = 0;
+      state += 1;
+      game_state = 0;
+    }
+    // ==================================================
+    // CHECKING if pattern == pattern_r
+    // ==================================================
+    if (pc >= state) {
+      Serial.println("Pattern UnMatched; Reporting...");
+      radio.stopListening();
+      if (!radio.write(&match, sizeof(match) )){
+	// Serial.println("Failed");
+      }
+      for (int i = 0; i < pc; i++) {
+	pattern_r[i] = 5;
+      } 
+      pc = 0;
+      state = 1;
+      game_state = 0;
+    }
   }
 }
