@@ -48,8 +48,10 @@ int lastButtonState_g = 0;     // previous state of the button
 
 boolean match = false;
 unsigned long pattern[10];
-unsigned long pattern_r[10] = {0,1,2,0,1,2,0};
+unsigned long pattern_r[10] = {4,4,4,4,4,4,4,4,4,4};
+// unsigned long pattern_r[10];
 int state = 1;
+int game_state = 0; 		/* 0 = listening mode; 1 = button mode */
 
 int pc = 0;
 RF24 radio(9,10);
@@ -68,14 +70,13 @@ void setup() {
   radio.openReadingPipe(1, 0xC2C2C2C2C2);
   radio.openWritingPipe(0xE7E7E7E7E7);
   radio.setCRCLength(RF24_CRC_16);
-  radio.setRetries(15,15);  
   printf_begin();
   radio.printDetails();
-  for (int i = 0; i < state; i++) {
+  for (int i = 0; i < 10; i++) {
     Serial.print(pattern_r[i]);
     } 
   Serial.println("");
-  for (int i = 0; i < state; i++) {
+  for (int i = 0; i < 10; i++) {
     Serial.print(pattern[i]);
   } 
 }
@@ -83,22 +84,24 @@ void setup() {
 
 
 void loop() {
+  if (game_state == 0) {
   // read the pushbutton input pin:
   radio.startListening();
-  // Serial.print("Begin Listening...\n");
     if( radio.available()){
       match = false;
-      state +=1;
-      pc = 0;
+      game_state == 1;
+      // pc = 0;
       // Variable for the received timestamp
       while (radio.available()) {                                   // While there is data ready
         radio.read( &pattern_r, sizeof(unsigned long) );             // Get the payload
       }
+      Serial.print("Message received: the pattery is\n");
       radio.stopListening();                                        // First, stop listening so we can talk 
-      for (int i = 0; i < pc; i++) {
+      for (int i = 0; i < 10; i++) {
 	Serial.print(pattern_r[i]);
       } 
     }
+  } else if (game_state == 0) {
   buttonState_r = digitalRead(buttonPin_r);
   buttonState_y = digitalRead(buttonPin_y);
   buttonState_g = digitalRead(buttonPin_g);
@@ -181,27 +184,21 @@ void loop() {
        pattern[i] = 4;
      }
      pc = 0;
+     state += 1;
+     game_state = 0;
   }
   // ==================================================
   // CHECKING if pattern == pattern_r
   // ==================================================
-if (pc >= state) {
-  Serial.println("Pattern UnMatched; Reporting...");
+  if (pc >= state) {
+    Serial.println("Pattern UnMatched; Reporting...");
     radio.stopListening();
-     if (!radio.write(&match, sizeof(match) )){
+    if (!radio.write(&match, sizeof(match) )){
        // Serial.println("Failed");
-     }   
-     pc = 0;
-     // state = 1;
+    }   
+    pc = 0;
+    state = 1;
+    game_state = 0;
   }
-
-  // turns on the LED every four button pushes by checking the modulo of the
-  // button push counter. the modulo function gives you the remainder of the
-  // division of two numbers:
-//  if (buttonPushCounter % 4 == 0) {
-//    digitalWrite(ledPin, HIGH);
-//  } else {
-//    digitalWrite(ledPin, LOW);
-//  }
-
+  }
 }

@@ -23,8 +23,8 @@ void setup() {
   radio.begin();
   radio.setChannel(20);
   radio.setPALevel(RF24_PA_LOW);
-  radio.openReadingPipe(1, 0xE7E7E7E7E7);
-  radio.openWritingPipe(0xC2C2C2C2C2);
+  radio.openReadingPipe(1, 0xC2C2C2C2C2);
+  radio.openWritingPipe(0xE7E7E7E7E7);
   radio.setCRCLength(RF24_CRC_16);
   radio.setRetries(15,15);  
   printf_begin();
