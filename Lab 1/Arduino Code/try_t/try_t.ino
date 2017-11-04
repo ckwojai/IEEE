@@ -29,7 +29,7 @@ void setup() {
   radio.setRetries(15,15);  
   printf_begin();
   radio.printDetails();
-  seq[0] = 0;
+  seq[0] = 0; //seq = r y g r y g r y g r
   seq[1] = 1;
   seq[2] = 2;
   seq[3] = 0;
@@ -126,34 +126,51 @@ void loop() {
       Serial.println("Now sending");
       if (!radio.write( &seq, sizeof(seq) )){
 	Serial.println("Failed");
-      } 
+      }
+      else {
+	Serial.println("Success");
+      }
       delay(2000);
       sent_state = 1;
     } else if (sent_state == 1) {
       radio.startListening();
       Serial.print("Begin Listening...\n");
-      if( radio.available()){                                                                    // Variable for the received timestamp
+      if( radio.available()){                                         // Variable for the received timestamp
 	game_state = 0;
 	while (radio.available()) {                                   // While there is data ready
-	  radio.read( &match, sizeof(match));             // Get the payload
+	  radio.read( &match, sizeof(match));             
 	}
 	radio.stopListening();                                        // First, stop listening so we can talk 
 	Serial.println(match);
 	if (match == 0) {
+	  ledState_r = HIGH;
+	  digitalWrite(ledPin_r, ledState_r);
+	  delay(1000);
+	  ledState_r = LOW;
+	  digitalWrite(ledPin_r, ledState_r);
+	  delay(1000);
 	  Serial.println("Not Matched");
 	  counter = 0;
 	  state = 1;
 	} else if (match == 1) {
+	  ledState_g = HIGH;
+	  digitalWrite(ledPin_g, ledState_g);
+	  delay(1000);
+	  ledState_g = LOW;
+	  digitalWrite(ledPin_g, ledState_g);
+	  delay(1000);
 	  Serial.println("Matched");
 	  counter = 0;
 	  state +=1;
+	  if (state == 10){
+	    state = 9;
+	  }
 	}
       }
-
       delay(2000); 
     }
     }
-    }
+}
 // if (game_state == 1) {
 //   unsigned long msg[10] ={0,1,2};
 //   if (!radio.write(&msg, sizeof(unsigned long))){
