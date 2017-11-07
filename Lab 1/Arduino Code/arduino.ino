@@ -8,9 +8,9 @@ void setup() {
   Serial.begin(9600);
   radio.begin();
   radio.setChannel(16);
-  radio.setPALevel(RF24_PA_MAX);
-  radio.openReadingPipe(1, 0xd2d2d2d2d2);
-  radio.openWritingPipe(0xf2f2f2f2f2);
+  radio.setPALevel(RF24_PA_MIN);
+  radio.openReadingPipe(1, 0xC2C2C2C2C2);
+  radio.openWritingPipe(0xE7E7E7E7E7);
   radio.setCRCLength(RF24_CRC_16);
   printf_begin();
   radio.printDetails();

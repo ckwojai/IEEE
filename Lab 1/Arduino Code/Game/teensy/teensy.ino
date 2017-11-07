@@ -2,13 +2,15 @@
 #include <nRF24L01.h>
 #include <RF24_config.h>
 #include <RF24.h>
+const int SEQLEN = 10; /* 0 = doesn't match; 1 = match; */
 int game_state = 0; /* 0 = displaying; 1 = transmit/waiting  */
 int sent_state = 0; /* 0 = wait to be sent; 1 = sent and wait for response */
 int state = 1; /* Keeping track of the LED game state we are in */
 int counter = 0; /* index of array to keep track of the current LED state */
 unsigned long match; /* 0 = doesn't match; 1 = match; */
+
 RF24 radio(9,10);
-long unsigned seq[10] = {0,1,2,0,1,2,0,1,2,0};  /* seq = r y g r y g r y g r */
+long unsigned seq[SEQLEN] = {0,1,2,0,1,2,0,1,2,0};  /* seq = r y g r y g r y g r */
 const int ledPin_r = 3;
 const int ledPin_y = 4;
 const int ledPin_g = 5;
@@ -22,17 +24,18 @@ void setup() {
   Serial.begin(9600);
   radio.begin();
   radio.setChannel(16);
-  radio.setPALevel(RF24_PA_MIN);
+  radio.setPALevel(RF24_PA_MAX);
   radio.openReadingPipe(1, 0xE7E7E7E7E7);
   radio.openWritingPipe(0xC2C2C2C2C2);
   radio.setCRCLength(RF24_CRC_16);
   printf_begin();
   radio.printDetails();
   /* Randomization code */
-  /* for (int i = 0; i < 10; i++) { */
-  /*   seq[i] = rand() % 3; */
-  /* } */
-  for (int i = 0; i < 10; i++) {
+  srand((unsigned)analogRead(0));
+  for (int i = 0; i < SEQLEN; i++) {
+    seq[i] = rand() % 3;
+  }
+  for (int i = 0; i < SEQLEN; i++) {
     Serial.print(seq[i]);
   }
   Serial.println("");
@@ -40,6 +43,14 @@ void setup() {
   pinMode(ledPin_r, OUTPUT);
   pinMode(ledPin_y, OUTPUT);
   pinMode(ledPin_g, OUTPUT);
+  digitalWrite(ledPin_r, HIGH);
+  digitalWrite(ledPin_y, HIGH);
+  digitalWrite(ledPin_g, HIGH);
+  delay(1000);
+  digitalWrite(ledPin_r, LOW);
+  digitalWrite(ledPin_y, LOW);
+  digitalWrite(ledPin_g, LOW);
+  delay(1000);
 }
 
 void loop() {
@@ -116,16 +127,19 @@ void loop() {
     if (sent_state == 0) {	/* Message not yet sent, attempting to send */
       Serial.println("Now sending");
       radio.stopListening();
-      if (!radio.write( &seq[state-1], sizeof(seq) )){
-	Serial.println("Failed");
+      while (!radio.write( &seq[state-1], sizeof(seq))) {
       }
-      else {
-	Serial.println("Success");
-      }
-      sent_state = 1;		/* Messaged Sent, Switch to listeing state */
+      /* int count = 0; */
+      /* while (count < 100) { */
+      /* 	radio.write(&seq[state-1], sizeof(seq)); */
+      /* 	count ++; */
+      /* 	Serial.println(count); */
+      /* } */
+    Serial.println("Success");
+    sent_state = 1; /* Messaged Sent, Switch to listeing state */
+    Serial.print("Begin Listening...\n");
     } else if (sent_state == 1) {
       radio.startListening();
-      Serial.print("Begin Listening...\n");
       if( radio.available()){                                         
 	game_state = 0;
 	while (radio.available()) {                                   
@@ -137,12 +151,15 @@ void loop() {
 	  ledState_r = HIGH;
 	  /* Doesn't Match, Red LED lights up and game restart*/
 	  digitalWrite(ledPin_r, ledState_r);
-	  delay(1000);
+	  delay(2000);
 	  ledState_r = LOW;
 	  digitalWrite(ledPin_r, ledState_r);
-	  delay(1000);
+	  delay(2000);
 	  Serial.println("Not Matched");
 	  /* Restart game */
+	    for (int i = 0; i < SEQLEN; i++) {
+	      seq[i] = rand() % 3;
+	    }
 	  counter = 0;
 	  state = 1;
 	} else if (match == 1) {
@@ -154,12 +171,21 @@ void loop() {
 	  digitalWrite(ledPin_g, ledState_g);
 	  delay(1000);
 	  Serial.println("Matched");
+	  digitalWrite(ledPin_r, HIGH);
+	  digitalWrite(ledPin_y, HIGH);
+	  digitalWrite(ledPin_g, HIGH);
+	  delay(1000);
+	  digitalWrite(ledPin_r, LOW);
+	  digitalWrite(ledPin_y, LOW);
+	  digitalWrite(ledPin_g, LOW);
+	  delay(1000);
 	  counter = 0;
 	  state +=1;
 	}
       }
     }
-    }
+  }
 }
+
 
 

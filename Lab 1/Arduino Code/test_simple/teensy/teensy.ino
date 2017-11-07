@@ -13,6 +13,7 @@ void setup() {
   radio.openReadingPipe(1, 0xE7E7E7E7E7);
   radio.openWritingPipe(0xC2C2C2C2C2);
   radio.setCRCLength(RF24_CRC_16);
+  radio.setRetries(5,15);
   printf_begin();
   radio.printDetails();
 }

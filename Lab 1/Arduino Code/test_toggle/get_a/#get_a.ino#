@@ -25,7 +25,7 @@ void setup() {
   Serial.begin(9600);
   Serial.println(F("*** PRESS 'T' to begin transmitting to the other node"));
   radio.begin();
-  radio.setChannel(127);
+  radio.setChannel(16);
   // Set the PA Level low to prevent power supply related issues since this is a
  // getting_started sketch, and the likelihood of close proximity of the devices. RF24_PA_MAX is default.
   radio.setPALevel(RF24_PA_MIN);
@@ -38,6 +38,7 @@ void setup() {
     radio.openWritingPipe(0xC2C2C2C2C2);
     radio.openReadingPipe(1,0xE7E7E7E7E7);
   }
+
   // Start the radio listening for data
   printf_begin();
   radio.printDetails();
@@ -70,7 +71,6 @@ if (role == 1)  {
 	  break;
       }
     }
-
     if ( timeout ){                                             // Describe the results
 	Serial.println(F("Failed, response timed out."));
     }else{
