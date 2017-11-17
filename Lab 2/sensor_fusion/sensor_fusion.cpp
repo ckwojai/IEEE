@@ -5,9 +5,11 @@
 void readReg(uint8_t reg, uint8_t *buf, size_t len)
 {
     // TODO: Implement
-  Wire.beginTransmission(reg);
-  Wire.requestFrom(reg,len);
-  for (int i = 0; i < len; i++) {
+  byte ADD_S = 0b1101000;	// AD0 pin is logic low; slave address 7 bit
+  Wire.beginTransmission(ADD_S << 1); // 7 bit plus 0 (write bit)
+  Wire.write(reg);
+  Wire.requestFrom(ADD_S, len);	  // parameter 7 bit slave address, the last bit will be added automiatically 1 (read)
+  for (int i = 0; i < len; i++) { // actual reading
     buf[i] = Wire.read();
   }
   Wire.endTransmission();
@@ -16,7 +18,9 @@ void readReg(uint8_t reg, uint8_t *buf, size_t len)
 void writeReg(uint8_t reg, uint8_t *buf, size_t len)
 {
     // TODO: Implement
-  Wire.beginTransmission(reg | 0x01);
+  byte ADD_S = 0b1101000;
+  Wire.beginTransmission(ADD_S << 1); // 0 write bit
+  Wire.write(reg);
   for (int i = 0; i < len; i++) {
     Wire.write(buf[i]);
   }

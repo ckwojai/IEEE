@@ -1,14 +1,14 @@
 #include <Wire.h>
 #include <sensor_fusion.h>
-  int a = 0;
-  int b = 0;
-  int c = 0;
-void setup()
-{
+  unsigned int a = 0;
+  unsigned int b = 0;
+  unsigned int c = 0;
   const unsigned int CONFIG = 26;
   const unsigned int GYRO_CONFIG = 27;
   const unsigned int PWR_MGMT_1 = 107;
-  Wire.begin();        // join i2c bus (address optional for master)
+void setup()
+{
+  Wire.begin(1);        // join i2c bus (address optional for master)
   readReg(PWR_MGMT_1, a, 1);
   readReg(GYRO_CONFIG, b, 1);
   readReg(CONFIG, c, 1);
@@ -24,6 +24,9 @@ void setup()
 
 void loop()
 {
+  /* readReg(PWR_MGMT_1, a, 1); */
+  /* readReg(GYRO_CONFIG, b, 1); */
+  /* readReg(CONFIG, c, 1); */
   Serial.println(a);
   Serial.println(b);
   Serial.println(c);
