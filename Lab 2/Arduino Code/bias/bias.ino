@@ -153,38 +153,38 @@ void loop()
     z_g = z_g | temp;
     temp = 0;
     /* Account for bias */
-    /* x_a = x_a - bias_x_a; */
-    /* y_a = y_a - bias_x_a; */
-    /* z_a = z_a - bias_x_a; */
-    /* x_g = x_g - bias_x_a; */
-    /* y_g = y_g - bias_x_a; */
-    /* z_g = z_g - bias_x_a; */
+    /* x_a = x_a + bias_x_a; */
+    /* y_a = y_a + bias_y_a; */
+    /* z_a = z_a + bias_z_a; */
+    /* x_g = x_g + bias_x_g; */
+    /* y_g = y_g + bias_y_g; */
+    /* z_g = z_g + bias_z_g; */
     /* Bias */
-    Serial.print(bias_x_a);
-    Serial.print(" ");
-    Serial.print(bias_y_a);
-    Serial.print(" ");
-    Serial.print(bias_z_a);
-    Serial.print(" ");
-    Serial.print(bias_x_g);
-    Serial.print(" ");
-    Serial.print(bias_y_g);
-    Serial.print(" ");
-    Serial.print(bias_z_g);
-    Serial.println("");
-    /* Real Data */
-    /* Serial.print(x_a); */
+    /* Serial.print(bias_x_a); */
     /* Serial.print(" "); */
-    /* Serial.print(y_a); */
+    /* Serial.print(bias_y_a); */
     /* Serial.print(" "); */
-    /* Serial.print(z_a); */
+    /* Serial.print(bias_z_a); */
     /* Serial.print(" "); */
-    /* Serial.print(x_g); */
+    /* Serial.print(bias_x_g); */
     /* Serial.print(" "); */
-    /* Serial.print(y_g); */
+    /* Serial.print(bias_y_g); */
     /* Serial.print(" "); */
-    /* Serial.print(z_g); */
+    /* Serial.print(bias_z_g); */
     /* Serial.println(""); */
+    /* Real Data */
+    Serial.print(x_a);
+    Serial.print(" ");
+    Serial.print(y_a);
+    Serial.print(" ");
+    Serial.print(z_a);
+    Serial.print(" ");
+    Serial.print(x_g);
+    Serial.print(" ");
+    Serial.print(y_g);
+    Serial.print(" ");
+    Serial.print(z_g);
+    Serial.println("");
   }
 
   delay(1000);
