@@ -1,8 +1,8 @@
 #include <Wire.h>
 #include <sensor_fusion.h>
-unsigned int a = 0;
-unsigned int b = 0;
-unsigned int c = 0;
+char a[10];
+char b[10];
+char c[10];
 void setup()
 {
   Wire.begin();        // join i2c bus (address optional for master)
@@ -26,9 +26,9 @@ void loop()
   /* readReg(PWR_MGMT_1, a, 1); */
   /* readReg(GYRO_CONFIG, b, 1); */
   /* readReg(CONFIG, c, 1); */
-  Serial.println(a);
-  Serial.println(b);
-  Serial.println(c);
+  Serial.println(a[0]);
+  Serial.println(b[0]);
+  Serial.println(c[0]);
   Serial.println("idk");
   delay(1000);
   /* while(Wire.available())    // slave may send less than requested */
