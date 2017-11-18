@@ -1,25 +1,24 @@
 #include <Wire.h>
 #include <sensor_fusion.h>
-  unsigned int a = 0;
-  unsigned int b = 0;
-  unsigned int c = 0;
-  const unsigned int CONFIG = 26;
-  const unsigned int GYRO_CONFIG = 27;
-  const unsigned int PWR_MGMT_1 = 107;
+unsigned int a = 0;
+unsigned int b = 0;
+unsigned int c = 0;
 void setup()
 {
-  Wire.begin(1);        // join i2c bus (address optional for master)
+  Wire.begin();        // join i2c bus (address optional for master)
+  writeReg(PWR_MGMT_1, 0b11111111, 1);
+  writeReg(GYRO_CONFIG, 0b11111111, 1);
+  writeReg(PWR_MGMT_1, 0b11111111, 1);
   readReg(PWR_MGMT_1, a, 1);
   readReg(GYRO_CONFIG, b, 1);
   readReg(CONFIG, c, 1);
-  writeReg(PWR_MGMT_1, a & 0b10111111, 1);	       /* PWR_MGMT_1: seoncd bit to 0 */
-  writeReg(GYRO_CONFIG, b | 0b00011000, 1);	       /* PWR_MGMT_1 4 and 5 bit to 1*/
-  writeReg(CONFIG, c & 0b11111000, 1);	       /* PWR_MGMT_1 4 and 5 bit to 1*/
-  readReg(PWR_MGMT_1, a, 1);
-  readReg(GYRO_CONFIG, b, 1);
-  readReg(CONFIG, c, 1);
+  /* writeReg(PWR_MGMT_1, a & 0b10111111, 1);	       /\* PWR_MGMT_1: seoncd bit to 0 *\/ */
+  /* writeReg(GYRO_CONFIG, b | 0b00011000, 1);	       /\* PWR_MGMT_1 4 and 5 bit to 1*\/ */
+  /* writeReg(CONFIG, c & 0b11111000, 1);	       /\* PWR_MGMT_1 4 and 5 bit to 1*\/ */
+  /* readReg(PWR_MGMT_1, a, 1); */
+  /* readReg(GYRO_CONFIG, b, 1); */
+  /* readReg(CONFIG, c, 1); */
   Serial.begin(9600);  // start serial for output
-
 }
 
 void loop()
