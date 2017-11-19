@@ -1,6 +1,6 @@
 #include <Wire.h>
 #include <sensor_fusion.h>
-const unsigned int N = 50;
+const unsigned int N = 100;
 int16_t x_acc_arr[N];
 int16_t y_acc_arr[N];
 int16_t z_acc_arr[N];
@@ -28,8 +28,8 @@ unsigned long previousMillis = 0;
 void setup()
 {
   Wire.begin();        // join i2c bus (address optional for master)
-  /* Serial.begin(115200);  // start serial for output */
-  Serial.begin(9600);  // start serial for output
+  Serial.begin(115200);  // start serial for output
+  /* Serial.begin(9600);  // start serial for output */
   Wire.begin();        // join i2c bus (address optional for master)
   uint8_t pwr = 0;
   uint8_t gyro = 0;
@@ -231,7 +231,7 @@ void loop()
     Serial.print(gyr_vec.y);
     Serial.print(" ");
     Serial.print(gyr_vec.z);
-    Serial.print(" ");
+    /* Serial.print(" "); */
     /* Serial.print(x_g); */
     /* Serial.print(" "); */
     /* Serial.print(y_g); */

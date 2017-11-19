@@ -3,18 +3,18 @@
 #define GYRO_CONFIG 27
 #define PWR_MGMT_1 107
 #define INT_STATUS 58
-#define ACCEL_XOUT_0 59
-#define ACCEL_XOUT_1 60
-#define ACCEL_YOUT_0 61
-#define ACCEL_YOUT_1 62
-#define ACCEL_ZOUT_0 63
-#define ACCEl_ZOUT_1 64
-#define GYRO_XOUT_0 67
-#define GYRO_XOUT_1 68
-#define GYRO_YOUT_0 69
-#define GYRO_YOUT_1 70
-#define GYRO_ZOUT_0 71
-#define GYRO_ZOUT_1 72
+#define ACCEL_XOUT_0 60
+#define ACCEL_XOUT_1 59
+#define ACCEL_YOUT_0 62
+#define ACCEL_YOUT_1 61
+#define ACCEL_ZOUT_0 64
+#define ACCEL_ZOUT_1 63
+#define GYRO_XOUT_0 68
+#define GYRO_XOUT_1 67
+#define GYRO_YOUT_0 70
+#define GYRO_YOUT_1 69
+#define GYRO_ZOUT_0 72
+#define GYRO_ZOUT_1 71
 
 /** Reads a register over I2C from the IMU.
  *
