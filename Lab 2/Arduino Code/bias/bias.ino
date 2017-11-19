@@ -1,25 +1,25 @@
 #include <Wire.h>
 #include <sensor_fusion.h>
 const unsigned int N = 100;
-int x_acc_arr[N];
-int y_acc_arr[N];
-int z_acc_arr[N];
-int x_gyr_arr[N];
-int y_gyr_arr[N];
-int z_gyr_arr[N];
-int x_a = 0;
-int y_a = 0;
-int z_a = 0;
-int x_g = 0;
-int y_g = 0;
-int z_g = 0;
-int bias_x_a = 0; 
-int bias_y_a = 0;
-int bias_z_a = 0;
-int bias_x_g = 0; 
-int bias_y_g = 0;
-int bias_z_g = 0;
-int count = 0;
+int16_t x_acc_arr[N];
+int16_t y_acc_arr[N];
+int16_t z_acc_arr[N];
+int16_t x_gyr_arr[N];
+int16_t y_gyr_arr[N];
+int16_t z_gyr_arr[N];
+int16_t x_a = 0;
+int16_t y_a = 0;
+int16_t z_a = 0;
+int16_t x_g = 0;
+int16_t y_g = 0;
+int16_t z_g = 0;
+int16_t bias_x_a = 0; 
+int16_t bias_y_a = 0;
+int16_t bias_z_a = 0;
+int16_t bias_x_g = 0; 
+int16_t bias_y_g = 0;
+int16_t bias_z_g = 0;
+int16_t count = 0;
 void setup()
 {
   Wire.begin();        // join i2c bus (address optional for master)
@@ -165,42 +165,39 @@ void loop()
     readReg(GYRO_ZOUT_0, &temp, 1); /* read the second 8 bit and combine to become a 16 bit */
     z_g = z_g | temp;
     temp = 0;
-
     /* Account for bias */
-    /* x_a = x_a - bias_x_a; */
-    /* y_a = y_a - bias_y_a; */
-    /* z_a = z_a - bias_z_a; */
-    /* x_g = x_g - bias_x_g; */
-    /* y_g = y_g - bias_y_g; */
-    /* z_g = z_g - bias_z_g; */
+    x_a = x_a - bias_x_a;
+    y_a = y_a - bias_y_a;
+    z_a = z_a - bias_z_a;
+    x_g = x_g - bias_x_g;
+    y_g = y_g - bias_y_g;
+    z_g = z_g - bias_z_g;
     /* Bias */
-    Serial.print(bias_x_a);
-    Serial.print(" ");
-    Serial.print(bias_y_a);
-    Serial.print(" ");
-    Serial.print(bias_z_a);
-    Serial.print(" ");
-    Serial.print(bias_x_g);
-    Serial.print(" ");
-    Serial.print(bias_y_g);
-    Serial.print(" ");
-    Serial.print(bias_z_g);
-    Serial.println("");
-    /* Real Data */
-    /* Serial.print(x_a); */
+    /* Serial.print(bias_x_a); */
     /* Serial.print(" "); */
-    /* Serial.print(y_a); */
+    /* Serial.print(bias_y_a); */
     /* Serial.print(" "); */
-    /* Serial.print(z_a); */
+    /* Serial.print(bias_z_a); */
     /* Serial.print(" "); */
-    /* Serial.print(x_g); */
+    /* Serial.print(bias_x_g); */
     /* Serial.print(" "); */
-    /* Serial.print(y_g); */
+    /* Serial.print(bias_y_g); */
     /* Serial.print(" "); */
-    /* Serial.print(z_g); */
+    /* Serial.print(bias_z_g); */
     /* Serial.println(""); */
+    /* Real Data */
+    Serial.print(x_a);
+    Serial.print(" ");
+    Serial.print(y_a);
+    Serial.print(" ");
+    Serial.print(z_a);
+    Serial.print(" ");
+    Serial.print(x_g);
+    Serial.print(" ");
+    Serial.print(y_g);
+    Serial.print(" ");
+    Serial.print(z_g);
+    Serial.println("");
   }
-
-  delay(1000);
 }
 

@@ -1,6 +1,6 @@
 #include <Wire.h>
 #include <sensor_fusion.h>
-const unsigned int N = 100;
+const unsigned int N = 50;
 int16_t x_acc_arr[N];
 int16_t y_acc_arr[N];
 int16_t z_acc_arr[N];
@@ -13,6 +13,9 @@ int16_t z_a = 0;
 int16_t x_g = 0;
 int16_t y_g = 0;
 int16_t z_g = 0;
+int16_t x_g_old = 0;
+int16_t y_g_old = 0;
+int16_t z_g_old = 0;
 int16_t bias_x_a = 0; 
 int16_t bias_y_a = 0;
 int16_t bias_z_a = 0;
@@ -20,10 +23,13 @@ int16_t bias_x_g = 0;
 int16_t bias_y_g = 0;
 int16_t bias_z_g = 0;
 int16_t count = 0;
+unsigned long previousMillis = 0;
+
 void setup()
 {
   Wire.begin();        // join i2c bus (address optional for master)
-  Serial.begin(115200);  // start serial for output
+  /* Serial.begin(115200);  // start serial for output */
+  Serial.begin(9600);  // start serial for output
   Wire.begin();        // join i2c bus (address optional for master)
   uint8_t pwr = 0;
   uint8_t gyro = 0;
@@ -122,6 +128,11 @@ void loop()
   uint8_t temp = 0;
   readReg(INT_STATUS, &status, 1);
   if (status & 0b00000001 == 1) { /* LSB is 1 --> data ready*/
+    unsigned long currentMillis = millis();
+    /* Old value */
+    x_g_old = x_g;
+    y_g_old = y_g;
+    z_g_old = z_g;
     /* resetting values */
     x_a = 0;
     y_a = 0;
@@ -172,6 +183,24 @@ void loop()
     x_g = x_g - bias_x_g;
     y_g = y_g - bias_y_g;
     z_g = z_g - bias_z_g;
+    /* Gyroscope */
+    int16_t x_g_rate;
+    int16_t y_g_rate;
+    int16_t z_g_rate;
+    x_g_rate = x_g - x_g_old;
+    y_g_rate = y_g - y_g_old;
+    z_g_rate = z_g - z_g_old;
+    vector gyr_vec;
+    quaternion gyr_qua;
+    gyr_vec.x = x_g_rate;
+    gyr_vec.y = y_g_rate;
+    gyr_vec.z = z_g_rate;
+    float mag = vector_normalize(&gyr_vec, &gyr_vec);
+    float angle = mag *(currentMillis - previousMillis)*0.0174533;
+    quaternion_create(&gyr_vec, angle, &gyr_qua);
+    quaternion_rotate(&gyr_vec, &gyr_qua, &gyr_vec);
+    previousMillis = currentMillis;
+    /* Accelerometer */
     vector acc_vec;
     acc_vec.x = x_a;
     acc_vec.y = y_a;
@@ -196,6 +225,12 @@ void loop()
     Serial.print(acc_vec.y);
     Serial.print(" ");
     Serial.print(acc_vec.z);
+    Serial.print(" ");
+    Serial.print(gyr_vec.x);
+    Serial.print(" ");
+    Serial.print(gyr_vec.y);
+    Serial.print(" ");
+    Serial.print(gyr_vec.z);
     Serial.print(" ");
     /* Serial.print(x_g); */
     /* Serial.print(" "); */
