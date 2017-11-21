@@ -24,6 +24,12 @@ int16_t bias_y_g = 0;
 int16_t bias_z_g = 0;
 int16_t count = 0;
 unsigned long previousMillis = 0;
+float alpha = 0.33;
+vector gyr_vec_axis;
+vector gyr_vec_axis1;
+vector vec_filter;
+    
+
 
 void setup()
 {
@@ -121,6 +127,15 @@ void setup()
   bias_x_g = x_avg_g / N;
   bias_y_g = y_avg_g / N;
   bias_z_g = z_avg_g / N;
+  gyr_vec_axis.x = 0;
+  gyr_vec_axis.y = 0;
+  gyr_vec_axis.z = 1;
+  gyr_vec_axis1.x = 0;
+  gyr_vec_axis1.y = 0;
+  gyr_vec_axis1.z = 1;
+  vec_filter.x = 0;
+  vec_filter.y = 0;
+  vec_filter.z = 1;
 }
 void loop()
 {
@@ -196,9 +211,12 @@ void loop()
     gyr_vec.y = y_g_rate;
     gyr_vec.z = z_g_rate;
     float mag = vector_normalize(&gyr_vec, &gyr_vec);
-    float angle = mag *((float)currentMillis - (float)previousMillis)*0.0174533 * 0.001;
+    float angle = -1*mag *(currentMillis - previousMillis)*0.0174533 * 0.001;
     quaternion_create(&gyr_vec, angle, &gyr_qua);
-    quaternion_rotate(&gyr_vec, &gyr_qua, &gyr_vec);
+    quaternion_rotate(&gyr_vec_axis, &gyr_qua, &gyr_vec);
+    gyr_vec_axis.x = gyr_vec.x;
+    gyr_vec_axis.y = gyr_vec.y;
+    gyr_vec_axis.z = gyr_vec.z;
     //Serial.print(mag);
     //Serial.print(currentMillis - previousMillis);
 //    Serial.print(x_g_rate);
@@ -214,6 +232,16 @@ void loop()
     acc_vec.y = y_a;
     acc_vec.z = z_a;
     vector_normalize(&acc_vec, &acc_vec);
+    
+   
+   vector acc_vec_fil;
+   //vector gyr_vec_fil;
+   quaternion_rotate(&gyr_vec_axis1, &gyr_qua, &gyr_vec_axis1);
+   vector_multiply(&acc_vec, alpha, &acc_vec_fil);
+   vector_multiply(&gyr_vec_axis1, 1.0-alpha, &gyr_vec_axis1);
+   vector_add(&gyr_vec_axis1, &acc_vec_fil, &gyr_vec_axis1);
+   vector_normalize(&gyr_vec_axis1, &gyr_vec_axis1);
+    
     /* Bias */
     /* Serial.print(bias_x_a); */
     /* Serial.print(" "); */
@@ -239,6 +267,12 @@ void loop()
     Serial.print(gyr_vec.y);
     Serial.print(" ");
     Serial.print(gyr_vec.z);
+    Serial.print(" ");
+    Serial.print(gyr_vec_axis1.x);
+    Serial.print(" ");
+    Serial.print(gyr_vec_axis1.y);
+    Serial.print(" ");
+    Serial.print(gyr_vec_axis1.z);
     Serial.print(" ");
     /* Serial.print(x_g); */
     /* Serial.print(" "); */
