@@ -1,0 +1,16 @@
+* Parts Needed to be bought
+  | Parts                                       | Links |
+  |---------------------------------------------+-------|
+  | Voltage Regulator (buck boost/ charge pump) | [[https://www.digikey.com/product-detail/en/linear-technology-analog-devices/LT3463EDD-PBF/LT3463EDD-PBF-ND/962644][link]]  |
+  | 100 uF capacitor                            | [[%20%20https://www.digikey.com/product-detail/en/tdk-corporation/CKG57NX7S1C107M500JH/445-7105-2-ND/2674907][link]]  |
+  | 100nF capacitor x 5                         | [[%20%20https://www.digikey.com/product-detail/en/murata-electronics-north-america/LLA185C70G104MA01L/490-8380-2-ND/2590029][link]]  |
+  | 10 uF decoupling capacitor                  | [[https://www.digikey.com/product-detail/en/taiyo-yuden/AWK107BJ106MV-T/587-5159-2-ND/6576516][link]]  |
+  | a few SMD LEDs:                             | [[https://www.digikey.com/product-detail/en/osram-opto-semiconductors-inc/CT-DELSS1.12-AABA-36-44G4/CT-DELSS1.12-AABA-36-44G4-ND/7927863][link]]  |
+  | resistors x 3                               |       |
+  | MOSFETs                                     |       |
+  | diodes x 4                                  |       |
+  | Decoupling Capacitors                       |       |
+  | Voltage Divider circuit                     |       |
+
+* Why use Charge Pumps over Buck Boost?
+  
