@@ -1,3 +1,64 @@
+* *THE LATEST *.sch file is FINAL_DESIGN.sch under this directory*
+* Schematic
+** Get the components
+  - MCU, IMU, RF, FTDI are in the AP library under quad
+  - Reuse the motor driver schematic from Lab3
+  - The voltage regulator needs to be made manually (pain)
+** Wiring
+   - Everything should be connected using net (change wire to net in motor drive)
+   - For most components, just connect the corresponding VCC and GND to the Atmega328p
+   - For other pins, connect them to the associated pin on the Atmega328p; otherwise, look up the connection from previous labs
+** Adding Capacitors
+   - 100muF across the battery (JST) to help provide current to motors
+   - Decoupling capacitors needed for Atmega328p, three 100nF across AVcc, Vcc, and AREF
+   - 10muF and 100nF decoupling capacitor across the RF module
+   - NOTE that it may seem that all capacitors are essentially across VCC and GND, however in the actual PCB there are inductance across wires, therefore we put associated coupling capacitors as close as possible
+** Reset circuit
+   - 100nF capacitor across DTR and RS
+   - Resistor to pull voltage up across Batter and RS
+   - a push button across RS and GND
+* Part Choosing Requirements (everything SMD and mostly 0603)
+  - Voltage regulator (3.3V, >100mA)
+    + RF: 13.5mA
+    + IMU: 3.9mA
+  - MOSFET
+    + Threshold = 1V
+    + On Resistance = 0.06
+    + Maximum operating voltage/current = 6.5
+    + Thermal Resistance and maximum operating temperature = [100 -55-150]
+    + I^2R = 6.5^2 * 0.06 = 0.0234 = W; W*100 = 2.34 degree changes <-- we are good
+  - Diode (4A continuously)
+  - Capacitors (0603)
+    + SMD and matches the value and dimension
+  - Resistors (0603)
+  - LED 
+  - Push button
+  - Oscillator
+* Unsolved Problems
+  - What are the criteria to choose Push buttons and Oscillator?
+  - Motor Driver Pull Up/Down at the MOSFET???
+  - Where should we put the LEDs?
+    
+* Problems from 1st Design Review
+  - [X] Higher current power supply <-- 150mA
+  - [X] Packages are incorrect <--changed
+  - [X] Resistor is way too small <--0603
+  - [X] 0603 for most passives <--fixed
+  - [X] Don’t used a stacked 100uF capacitor <--fixed
+  - [X] Know why you’re choosing parts <--ofc
+  - [X] Use a correct motor driver circuit <--correced
+  - [X] Don’t use two batteries <--only one JBT 
+  - [X] Use the correct components (e.g. don’t use NMOS for PMOS, JST for battery) <--motor driver
+  - [X] Missing MCU reset pin components <--reset circuit completed
+  - [X] Why is there an LED from DTR to GND? <--reset circuit completed
+  - [X] Incomplete reset circuit <--reset circuit completed
+  - [X] Unconnected ground pins on MCU
+  - [X] Voltage divider is for BATTERY VOLTAGE, not REGULATED VOLTAGE (regulated voltage shouldn’t be changing!) <--fixed
+  - [ ] Check package in schematic matches package in BOM <--
+  - [ ] Fix all ERC (except “POWER pin X connected to Y”)
+  - [ ] Missing oscillator
+  - [ ] Create library and wiring for voltage regulator
+  
 * Parts Needed to be bought
   | Parts                                       | Links |
   |---------------------------------------------+-------|
@@ -12,5 +73,18 @@
   | Decoupling Capacitors                       |       |
   | Voltage Divider circuit                     |       |
 
-* Why use Charge Pumps over Buck Boost?
-  
+* Why use Charge Pumps over Inductive?
+  - AKA switched-capacitor
+  - Charge and Discharge of capactior (flying capacitor)
+  - Not as efficient as inductive converters
+  - Ease to use, small solution size
+  - High current draw from the motor won't cause battery voltage to drop
+** Doubling Boost
+   - switching capacitor charged from input to ground
+   - stacking it double the input voltage
+   - Regulated: feedback from output
+** Buck Charge
+   - there is going to be output ripple
+   - more efficient 
+* Decision: buck-boost converter or a charge-pump regulator
+  We choose charge-pump regulator because
