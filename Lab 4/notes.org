@@ -60,19 +60,17 @@
   - [ ] Create library and wiring for voltage regulator
   
 * Parts Needed to be bought
-  | Parts                                       | Links |
-  |---------------------------------------------+-------|
-  | Voltage Regulator (buck boost/ charge pump) | [[https://www.digikey.com/product-detail/en/linear-technology-analog-devices/LT3463EDD-PBF/LT3463EDD-PBF-ND/962644][link]]  |
-  | 100 uF capacitor                            | [[%20%20https://www.digikey.com/product-detail/en/tdk-corporation/CKG57NX7S1C107M500JH/445-7105-2-ND/2674907][link]]  |
-  | 100nF capacitor x 5                         | [[%20%20https://www.digikey.com/product-detail/en/murata-electronics-north-america/LLA185C70G104MA01L/490-8380-2-ND/2590029][link]]  |
-  | 10 uF decoupling capacitor                  | [[https://www.digikey.com/product-detail/en/taiyo-yuden/AWK107BJ106MV-T/587-5159-2-ND/6576516][link]]  |
-  | a few SMD LEDs:                             | [[https://www.digikey.com/product-detail/en/osram-opto-semiconductors-inc/CT-DELSS1.12-AABA-36-44G4/CT-DELSS1.12-AABA-36-44G4-ND/7927863][link]]  |
-  | resistors x 3                               |       |
-  | MOSFETs                                     |       |
-  | diodes x 4                                  |       |
-  | Decoupling Capacitors                       |       |
-  | Voltage Divider circuit                     |       |
-
+| Vendor  | Vendor Part #     | Manufacturer                     | Link | Part #             | Package                        | Description                     | Quantity | Unit Price | Total Cost | Datasheet |
+|---------+-------------------+----------------------------------+------+--------------------+--------------------------------+---------------------------------+----------+------------+------------+-----------|
+| Digikey | ATMEGA328P-AU-ND  | Microchip                        | [[http://www.digikey.com/product-detail/en/microchip-technology/ATMEGA328P-AU/ATMEGA328P-AU-ND/1832260][link]] | ATMEGA328P-AU      | 32-TQFP                        | Microcontroller                 |        1 |       2.13 |       2.13 | [[http://www.atmel.com/Images/Atmel-42735-8-bit-AVR-Microcontroller-ATmega328-328P_Datasheet.pdf][link]]      |
+| DigiKey | MAX1672EEE+T-ND   | Maxim Integrated                 | [[https://www.digikey.com/product-detail/en/maxim-integrated/MAX1672EEE-T/MAX1672EEE-T-ND/1515219][link]] | MAX1672EEE+T       | 16-SSOP (0.154", 3.90mm Width) | Voltage Regulator (Buck, Boost) |        1 |       3.32 |       3.32 | [[https://datasheets.maximintegrated.com/en/ds/MAX1672.pdf][link]]      |
+| DigiKey | 490-10525-2-ND    | Murata Electronics North America | [[https://www.digikey.com/product-detail/en/murata-electronics-north-america/GRM31CD80J107ME39L/490-10525-2-ND/5027609][link]] | GRM31CD80J107ME39L | [1206]                         | 100 uF capacitor                |        1 |       0.13 |       0.13 | [[http://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM31CD80J107ME39-01.pdf][link]]      |
+| DigiKey | 587-1256-2-ND     | Taiyo Yuden                      | [[https://www.digikey.com/product-detail/en/taiyo-yuden/JMK107BJ106MA-T/587-1256-2-ND/930608][link]] | JMK107BJ106MA-T    | [0603]                         | 10 uF capacitor                 |        1 |       0.02 |       0.02 | [[https://www.yuden.co.jp/productdata/catalog/mlcc_all_e.pdf][link]]      |
+| DigiKey | 399-1096-2-ND     | KEMET                            | [[https://www.digikey.com/product-detail/en/kemet/C0603C104K4RACTU/399-1096-2-ND/411095][link]] | C0603C104K4RACTU   | [0603]                         | 100 nF capacitor                |        5 |       0.01 |       0.01 | [[https://content.kemet.com/datasheets/KEM_C1002_X7R_SMD.pdf][link]]      |
+| DigiKey | 160-1445-2-ND     | Lite-On Inc                      | [[https://www.digikey.com/product-detail/en/lite-on-inc/LTST-C191KFKT/160-1445-2-ND/386833][link]] | LTST-C191KFKT      | [0603]                         | LED                             |        2 |       0.04 |       0.08 | [[http://optoelectronics.liteon.com/upload/download/DS22-2000-222/LTST-C191KFKT.pdf][link]]      |
+| Mouser  | 667-ERJ-3EKF2201V | Panasonic Industrial Devices     | [[https://www.mouser.com/ProductDetail/Vishay/CRCW02012K20JNED?qs%3DsGAEpiMZZMvdGkrng054tx3Kv%25252bhbWMRFaxxOJx%25252bImNQ%253d][link]] | ERJ-3EKF2201V      | [0603]                         | 2.2 kOhm Resistor               |        2 |      $0.22 |       0.44 | [[https://www.mouser.com/ds/2/427/crcw0201e3-239671.pdf][link]]      |
+| DigiKey | 497-4525-6-ND     | STMicroelectronics               | [[https://www.digikey.com/product-detail/en/stmicroelectronics/STN4NF03L/497-4525-6-ND/1848877][link]] | STN4NF03L          | SOT-233                        | MOSFET                          |        4 |      $1.33 |       5.32 | [[http://www.st.com/content/ccc/resource/technical/document/datasheet/04/34/f3/84/3e/6f/4c/eb/CD00002146.pdf/files/CD00002146.pdf/jcr:content/translations/en.CD00002146.pdf][link]]      |
+| Mouser  | 652-CD0603-S01575 | Bourns                           | [[https://www.mouser.com/ProductDetail/Bourns/CD0603-S01575?qs%3DFITO%252f%252fQgYDlmbwJLjhqThQ%253d%253d][link]] | CD0603-S01575      | [0603]                         | Diode                           |        4 |        0.4 |        1.6 | [[https://www.mouser.com/ds/2/54/D0603_1005-777241.pdf][link]]      |
 * Why use Charge Pumps over Inductive?
   - AKA switched-capacitor
   - Charge and Discharge of capactior (flying capacitor)
