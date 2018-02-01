@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="8.4.3">
+<eagle version="8.4.1">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -1956,69 +1956,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </deviceset>
 </devicesets>
 </library>
-<library name="SiT8021">
-<packages>
-<package name="BGA4C40P2X2_84X84X60N">
-<wire x1="-0.42" y1="-0.42" x2="0.42" y2="-0.42" width="0.127" layer="51"/>
-<wire x1="0.42" y1="-0.42" x2="0.42" y2="0.42" width="0.127" layer="51"/>
-<wire x1="0.42" y1="0.42" x2="-0.42" y2="0.42" width="0.127" layer="51"/>
-<wire x1="-0.42" y1="0.42" x2="-0.42" y2="-0.42" width="0.127" layer="51"/>
-<wire x1="-0.49" y1="-0.49" x2="-0.49" y2="-0.245" width="0.127" layer="21"/>
-<wire x1="-0.245" y1="-0.49" x2="-0.49" y2="-0.49" width="0.127" layer="21"/>
-<wire x1="-0.49" y1="0.245" x2="-0.49" y2="0.49" width="0.127" layer="21"/>
-<wire x1="-0.245" y1="0.49" x2="-0.49" y2="0.49" width="0.127" layer="21"/>
-<wire x1="0.49" y1="0.49" x2="0.245" y2="0.49" width="0.127" layer="21"/>
-<wire x1="0.49" y1="0.49" x2="0.49" y2="0.245" width="0.127" layer="21"/>
-<wire x1="0.49" y1="-0.49" x2="0.245" y2="-0.49" width="0.127" layer="21"/>
-<wire x1="0.49" y1="-0.245" x2="0.49" y2="-0.49" width="0.127" layer="21"/>
-<wire x1="-0.7" y1="0.7" x2="0.7" y2="0.7" width="0.05" layer="39"/>
-<wire x1="0.7" y1="0.7" x2="0.7" y2="-0.7" width="0.05" layer="39"/>
-<wire x1="0.7" y1="-0.7" x2="-0.7" y2="-0.7" width="0.05" layer="39"/>
-<wire x1="-0.7" y1="-0.7" x2="-0.7" y2="0.7" width="0.05" layer="39"/>
-<text x="-0.912759375" y="0.97795625" size="0.325984375" layer="25">&gt;NAME</text>
-<text x="-0.913271875" y="-1.30458125" size="0.326165625" layer="27">&gt;VALUE</text>
-<circle x="-0.7" y="0.2" radius="0.03" width="0.06" layer="21"/>
-<smd name="B1" x="-0.2" y="-0.2" dx="0.25" dy="0.25" layer="1" roundness="100"/>
-<smd name="B2" x="0.2" y="-0.2" dx="0.25" dy="0.25" layer="1" roundness="100"/>
-<smd name="A2" x="0.2" y="0.2" dx="0.25" dy="0.25" layer="1" roundness="100"/>
-<smd name="A1" x="-0.2" y="0.2" dx="0.25" dy="0.25" layer="1" roundness="100"/>
-</package>
-</packages>
-<symbols>
-<symbol name="SIT8021">
-<wire x1="-7.62" y1="7.62" x2="7.62" y2="7.62" width="0.254" layer="94"/>
-<wire x1="7.62" y1="7.62" x2="7.62" y2="-7.62" width="0.254" layer="94"/>
-<wire x1="7.62" y1="-7.62" x2="-7.62" y2="-7.62" width="0.254" layer="94"/>
-<wire x1="-7.62" y1="-7.62" x2="-7.62" y2="7.62" width="0.254" layer="94"/>
-<pin name="ST" x="-12.7" y="5.08" length="middle"/>
-<pin name="OUT" x="-12.7" y="-5.08" length="middle"/>
-<pin name="GND" x="12.7" y="5.08" length="middle" rot="R180"/>
-<pin name="VDD" x="12.7" y="-5.08" length="middle" rot="R180"/>
-<text x="-7.62" y="7.62" size="1.778" layer="95">&gt;NAME</text>
-<text x="-7.62" y="-10.16" size="1.778" layer="96">&gt;VALUE</text>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="SIT8021">
-<gates>
-<gate name="G$1" symbol="SIT8021" x="0" y="0"/>
-</gates>
-<devices>
-<device name="SIT8021" package="BGA4C40P2X2_84X84X60N">
-<connects>
-<connect gate="G$1" pin="GND" pad="B1"/>
-<connect gate="G$1" pin="OUT" pad="A2"/>
-<connect gate="G$1" pin="ST" pad="A1"/>
-<connect gate="G$1" pin="VDD" pad="B2"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 </libraries>
 <attributes>
 </attributes>
@@ -2077,7 +2014,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="C14" library="SparkFun-Passives" deviceset="CAP" device="0603-CAP" value="100nF"/>
 <part name="DIODE4" library="quad" deviceset="DB2W40300L" device=""/>
 <part name="C11" library="SparkFun-Passives" deviceset="CAP" device="0603-CAP" value="100nF"/>
-<part name="U$3" library="SiT8021" deviceset="SIT8021" device="SIT8021"/>
 </parts>
 <sheets>
 <sheet>
@@ -2132,7 +2068,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <instance part="C14" gate="G$1" x="-220.98" y="-12.7"/>
 <instance part="DIODE4" gate="G$1" x="-274.32" y="38.1" rot="MR270"/>
 <instance part="C11" gate="G$1" x="-284.48" y="-20.32"/>
-<instance part="U$3" gate="G$1" x="-111.76" y="48.26"/>
 </instances>
 <busses>
 </busses>
@@ -2296,16 +2231,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="-284.48" y1="-27.94" x2="-261.62" y2="-27.94" width="0.1524" layer="91"/>
 <junction x="-261.62" y="-27.94"/>
 </segment>
-<segment>
-<pinref part="U$3" gate="G$1" pin="GND"/>
-<wire x1="-99.06" y1="53.34" x2="-83.82" y2="53.34" width="0.1524" layer="91"/>
-<label x="-88.9" y="53.34" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="U$3" gate="G$1" pin="ST"/>
-<wire x1="-124.46" y1="53.34" x2="-134.62" y2="53.34" width="0.1524" layer="91"/>
-<label x="-134.62" y="53.34" size="1.778" layer="95"/>
-</segment>
 </net>
 <net name="FTDI-RX" class="0">
 <segment>
@@ -2385,11 +2310,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="-137.16" y1="137.16" x2="-152.4" y2="137.16" width="0.1524" layer="91"/>
 <label x="-152.4" y="137.16" size="1.778" layer="95"/>
 </segment>
-<segment>
-<pinref part="U$3" gate="G$1" pin="VDD"/>
-<wire x1="-99.06" y1="43.18" x2="-83.82" y2="43.18" width="0.1524" layer="91"/>
-<label x="-88.9" y="43.18" size="1.778" layer="95"/>
-</segment>
 </net>
 <net name="RF-CE" class="0">
 <segment>
@@ -2398,9 +2318,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <label x="-162.56" y="33.02" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="U1" gate="U$1" pin="PB0(ICP)"/>
-<wire x1="-88.9" y1="76.2" x2="-83.82" y2="76.2" width="0.1524" layer="91"/>
-<label x="-86.36" y="76.2" size="1.778" layer="95"/>
+<pinref part="U1" gate="U$1" pin="PB1(OC1A)"/>
+<wire x1="-88.9" y1="73.66" x2="-83.82" y2="73.66" width="0.1524" layer="91"/>
+<label x="-86.36" y="73.66" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="RF-CSN" class="0">
@@ -2483,6 +2403,11 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </net>
 <net name="MOTOR1" class="0">
 <segment>
+<pinref part="U1" gate="U$1" pin="PC0(ADC0)"/>
+<wire x1="-88.9" y1="121.92" x2="-76.2" y2="121.92" width="0.1524" layer="91"/>
+<label x="-86.36" y="121.92" size="1.778" layer="95"/>
+</segment>
+<segment>
 <pinref part="NMOS" gate="G$1" pin="G"/>
 <pinref part="R4" gate="G$1" pin="2"/>
 <wire x1="-27.94" y1="76.2" x2="-35.56" y2="76.2" width="0.1524" layer="91"/>
@@ -2490,13 +2415,13 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <junction x="-35.56" y="76.2"/>
 <label x="-48.26" y="76.2" size="1.778" layer="95"/>
 </segment>
-<segment>
-<pinref part="U1" gate="U$1" pin="PD2(INT0)"/>
-<wire x1="-88.9" y1="93.98" x2="-73.66" y2="93.98" width="0.1524" layer="91"/>
-<label x="-83.82" y="93.98" size="1.778" layer="95"/>
-</segment>
 </net>
 <net name="MOTOR2" class="0">
+<segment>
+<pinref part="U1" gate="U$1" pin="PC1(ADC1)"/>
+<wire x1="-88.9" y1="119.38" x2="-76.2" y2="119.38" width="0.1524" layer="91"/>
+<label x="-86.36" y="119.38" size="1.778" layer="95"/>
+</segment>
 <segment>
 <pinref part="NMOS1" gate="G$1" pin="G"/>
 <pinref part="R5" gate="G$1" pin="2"/>
@@ -2505,13 +2430,13 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <junction x="53.34" y="81.28"/>
 <label x="40.64" y="81.28" size="1.778" layer="95"/>
 </segment>
-<segment>
-<pinref part="U1" gate="U$1" pin="PD5(T1)"/>
-<wire x1="-88.9" y1="86.36" x2="-73.66" y2="86.36" width="0.1524" layer="91"/>
-<label x="-83.82" y="86.36" size="1.778" layer="95"/>
-</segment>
 </net>
 <net name="MOTOR3" class="0">
+<segment>
+<pinref part="U1" gate="U$1" pin="PC2(ADC2)"/>
+<wire x1="-88.9" y1="116.84" x2="-76.2" y2="116.84" width="0.1524" layer="91"/>
+<label x="-86.36" y="116.84" size="1.778" layer="95"/>
+</segment>
 <segment>
 <pinref part="NMOS2" gate="G$1" pin="G"/>
 <pinref part="R6" gate="G$1" pin="2"/>
@@ -2520,13 +2445,13 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <junction x="-35.56" y="12.7"/>
 <label x="-50.8" y="12.7" size="1.778" layer="95"/>
 </segment>
-<segment>
-<pinref part="U1" gate="U$1" pin="PD6(AIN0)"/>
-<wire x1="-88.9" y1="83.82" x2="-73.66" y2="83.82" width="0.1524" layer="91"/>
-<label x="-83.82" y="83.82" size="1.778" layer="95"/>
-</segment>
 </net>
 <net name="MOTOR4" class="0">
+<segment>
+<pinref part="U1" gate="U$1" pin="PC3(ADC3)"/>
+<wire x1="-88.9" y1="114.3" x2="-76.2" y2="114.3" width="0.1524" layer="91"/>
+<label x="-86.36" y="114.3" size="1.778" layer="95"/>
+</segment>
 <segment>
 <pinref part="NMOS3" gate="G$1" pin="G"/>
 <pinref part="R7" gate="G$1" pin="2"/>
@@ -2534,11 +2459,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="33.02" y1="17.78" x2="20.32" y2="17.78" width="0.1524" layer="91"/>
 <junction x="33.02" y="17.78"/>
 <label x="17.78" y="17.78" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="U1" gate="U$1" pin="PB1(OC1A)"/>
-<wire x1="-88.9" y1="73.66" x2="-73.66" y2="73.66" width="0.1524" layer="91"/>
-<label x="-83.82" y="73.66" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$1" class="0">
@@ -2803,18 +2723,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pinref part="U$2" gate="G$1" pin="~PGO"/>
 <wire x1="-266.7" y1="63.5" x2="-274.32" y2="63.5" width="0.1524" layer="91"/>
 <label x="-274.32" y="63.5" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="OSC1" class="0">
-<segment>
-<pinref part="U1" gate="U$1" pin="PB6(XTAL1/TOSC1)"/>
-<wire x1="-137.16" y1="96.52" x2="-144.78" y2="96.52" width="0.1524" layer="91"/>
-<label x="-144.78" y="96.52" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="U$3" gate="G$1" pin="OUT"/>
-<wire x1="-124.46" y1="43.18" x2="-134.62" y2="43.18" width="0.1524" layer="91"/>
-<label x="-134.62" y="43.18" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>
