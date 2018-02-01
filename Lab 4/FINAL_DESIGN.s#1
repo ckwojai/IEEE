@@ -2435,9 +2435,9 @@ Source: www.pletronics.com .. tc4.pdf</description>
 <label x="-162.56" y="33.02" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="U1" gate="U$1" pin="PB0(ICP)"/>
-<wire x1="-88.9" y1="76.2" x2="-83.82" y2="76.2" width="0.1524" layer="91"/>
-<label x="-86.36" y="76.2" size="1.778" layer="95"/>
+<pinref part="U1" gate="U$1" pin="PB1(OC1A)"/>
+<wire x1="-88.9" y1="73.66" x2="-83.82" y2="73.66" width="0.1524" layer="91"/>
+<label x="-86.36" y="73.66" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="RF-CSN" class="0">
@@ -2520,6 +2520,11 @@ Source: www.pletronics.com .. tc4.pdf</description>
 </net>
 <net name="MOTOR1" class="0">
 <segment>
+<pinref part="U1" gate="U$1" pin="PC0(ADC0)"/>
+<wire x1="-88.9" y1="121.92" x2="-76.2" y2="121.92" width="0.1524" layer="91"/>
+<label x="-86.36" y="121.92" size="1.778" layer="95"/>
+</segment>
+<segment>
 <pinref part="NMOS" gate="G$1" pin="G"/>
 <pinref part="R4" gate="G$1" pin="2"/>
 <wire x1="-27.94" y1="76.2" x2="-35.56" y2="76.2" width="0.1524" layer="91"/>
@@ -2527,13 +2532,13 @@ Source: www.pletronics.com .. tc4.pdf</description>
 <junction x="-35.56" y="76.2"/>
 <label x="-48.26" y="76.2" size="1.778" layer="95"/>
 </segment>
-<segment>
-<pinref part="U1" gate="U$1" pin="PD2(INT0)"/>
-<wire x1="-88.9" y1="93.98" x2="-73.66" y2="93.98" width="0.1524" layer="91"/>
-<label x="-83.82" y="93.98" size="1.778" layer="95"/>
-</segment>
 </net>
 <net name="MOTOR2" class="0">
+<segment>
+<pinref part="U1" gate="U$1" pin="PC1(ADC1)"/>
+<wire x1="-88.9" y1="119.38" x2="-76.2" y2="119.38" width="0.1524" layer="91"/>
+<label x="-86.36" y="119.38" size="1.778" layer="95"/>
+</segment>
 <segment>
 <pinref part="NMOS1" gate="G$1" pin="G"/>
 <pinref part="R5" gate="G$1" pin="2"/>
@@ -2542,13 +2547,13 @@ Source: www.pletronics.com .. tc4.pdf</description>
 <junction x="53.34" y="81.28"/>
 <label x="40.64" y="81.28" size="1.778" layer="95"/>
 </segment>
-<segment>
-<pinref part="U1" gate="U$1" pin="PD5(T1)"/>
-<wire x1="-88.9" y1="86.36" x2="-73.66" y2="86.36" width="0.1524" layer="91"/>
-<label x="-83.82" y="86.36" size="1.778" layer="95"/>
-</segment>
 </net>
 <net name="MOTOR3" class="0">
+<segment>
+<pinref part="U1" gate="U$1" pin="PC2(ADC2)"/>
+<wire x1="-88.9" y1="116.84" x2="-76.2" y2="116.84" width="0.1524" layer="91"/>
+<label x="-86.36" y="116.84" size="1.778" layer="95"/>
+</segment>
 <segment>
 <pinref part="NMOS2" gate="G$1" pin="G"/>
 <pinref part="R6" gate="G$1" pin="2"/>
@@ -2557,13 +2562,13 @@ Source: www.pletronics.com .. tc4.pdf</description>
 <junction x="-35.56" y="12.7"/>
 <label x="-50.8" y="12.7" size="1.778" layer="95"/>
 </segment>
-<segment>
-<pinref part="U1" gate="U$1" pin="PD6(AIN0)"/>
-<wire x1="-88.9" y1="83.82" x2="-73.66" y2="83.82" width="0.1524" layer="91"/>
-<label x="-83.82" y="83.82" size="1.778" layer="95"/>
-</segment>
 </net>
 <net name="MOTOR4" class="0">
+<segment>
+<pinref part="U1" gate="U$1" pin="PC3(ADC3)"/>
+<wire x1="-88.9" y1="114.3" x2="-76.2" y2="114.3" width="0.1524" layer="91"/>
+<label x="-86.36" y="114.3" size="1.778" layer="95"/>
+</segment>
 <segment>
 <pinref part="NMOS3" gate="G$1" pin="G"/>
 <pinref part="R7" gate="G$1" pin="2"/>
@@ -2571,11 +2576,6 @@ Source: www.pletronics.com .. tc4.pdf</description>
 <wire x1="33.02" y1="17.78" x2="20.32" y2="17.78" width="0.1524" layer="91"/>
 <junction x="33.02" y="17.78"/>
 <label x="17.78" y="17.78" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="U1" gate="U$1" pin="PB1(OC1A)"/>
-<wire x1="-88.9" y1="73.66" x2="-73.66" y2="73.66" width="0.1524" layer="91"/>
-<label x="-83.82" y="73.66" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$1" class="0">

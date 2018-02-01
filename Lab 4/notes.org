@@ -1,4 +1,18 @@
-* *THE LATEST *.sch file is FINAL_DESIGN.sch under this directory*
+* TODO
+** DONE Make a schematic for the oscillator in Eagle and Wire it
+
+* Questions
+  - [ ] The manually made voltage regulator: would it be a problem for the later PCB layout
+  - [ ] The oscillator in the schematic may differ from the part we picked on digkey 
+  - [ ] There are too many extra components for the voltage regulator, is that a problem?
+  - [ ] May want to have a capacitor for each motor?
+
+  - [X] What are the criteria to choose Push buttons and Oscillator?
+    + Push button as small as possible > 0603
+  - [X] Motor Driver Pull Up/Down at the MOSFET???
+    + Jose got it
+  - [X] Where should we put the LEDs?
+    + Wherever that serves a testing purpose
 * Schematic
 ** Get the components
   - MCU, IMU, RF, FTDI are in the AP library under quad
@@ -21,23 +35,22 @@
   - Voltage regulator (3.3V, >100mA)
     + RF: 13.5mA
     + IMU: 3.9mA
+  - Oscillator
+    + Operating frequency 0-10MHz (from microcontroller datasheet)
+    + 0603
   - MOSFET
     + Threshold = 1V
-    + On Resistance = 0.06
+    + On Resistance = <0.06
     + Maximum operating voltage/current = 6.5
-    + Thermal Resistance and maximum operating temperature = [100 -55-150]
-    + I^2R = 6.5^2 * 0.06 = 0.0234 = W; W*100 = 2.34 degree changes <-- we are good
+    + Thermal Resistance and maximum operating temperature = [38 [1] or 100 -55-150]
+      [1] When mounted on 1 inch2 FR-4 board, 2 oz. Cu., t < 10 s
+    + I^2R = 3^2 * 0.06 = 0.54 = W; W*38 = 20 degree changes <-- we are good
   - Diode (4A continuously)
   - Capacitors (0603)
     + SMD and matches the value and dimension
   - Resistors (0603)
   - LED 
   - Push button
-  - Oscillator
-* Unsolved Problems
-  - What are the criteria to choose Push buttons and Oscillator?
-  - Motor Driver Pull Up/Down at the MOSFET???
-  - Where should we put the LEDs?
     
 * Problems from 1st Design Review
   - [X] Higher current power supply <-- 150mA
@@ -60,17 +73,17 @@
   - [ ] Create library and wiring for voltage regulator
   
 * Parts Needed to be bought
-| Vendor  | Vendor Part #     | Manufacturer                     | Link | Part #             | Package                        | Description                     | Quantity | Unit Price | Total Cost | Datasheet |
-|---------+-------------------+----------------------------------+------+--------------------+--------------------------------+---------------------------------+----------+------------+------------+-----------|
-| Digikey | ATMEGA328P-AU-ND  | Microchip                        | [[http://www.digikey.com/product-detail/en/microchip-technology/ATMEGA328P-AU/ATMEGA328P-AU-ND/1832260][link]] | ATMEGA328P-AU      | 32-TQFP                        | Microcontroller                 |        1 |       2.13 |       2.13 | [[http://www.atmel.com/Images/Atmel-42735-8-bit-AVR-Microcontroller-ATmega328-328P_Datasheet.pdf][link]]      |
-| DigiKey | MAX1672EEE+T-ND   | Maxim Integrated                 | [[https://www.digikey.com/product-detail/en/maxim-integrated/MAX1672EEE-T/MAX1672EEE-T-ND/1515219][link]] | MAX1672EEE+T       | 16-SSOP (0.154", 3.90mm Width) | Voltage Regulator (Buck, Boost) |        1 |       3.32 |       3.32 | [[https://datasheets.maximintegrated.com/en/ds/MAX1672.pdf][link]]      |
-| DigiKey | 490-10525-2-ND    | Murata Electronics North America | [[https://www.digikey.com/product-detail/en/murata-electronics-north-america/GRM31CD80J107ME39L/490-10525-2-ND/5027609][link]] | GRM31CD80J107ME39L | [1206]                         | 100 uF capacitor                |        1 |       0.13 |       0.13 | [[http://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM31CD80J107ME39-01.pdf][link]]      |
-| DigiKey | 587-1256-2-ND     | Taiyo Yuden                      | [[https://www.digikey.com/product-detail/en/taiyo-yuden/JMK107BJ106MA-T/587-1256-2-ND/930608][link]] | JMK107BJ106MA-T    | [0603]                         | 10 uF capacitor                 |        1 |       0.02 |       0.02 | [[https://www.yuden.co.jp/productdata/catalog/mlcc_all_e.pdf][link]]      |
-| DigiKey | 399-1096-2-ND     | KEMET                            | [[https://www.digikey.com/product-detail/en/kemet/C0603C104K4RACTU/399-1096-2-ND/411095][link]] | C0603C104K4RACTU   | [0603]                         | 100 nF capacitor                |        5 |       0.01 |       0.01 | [[https://content.kemet.com/datasheets/KEM_C1002_X7R_SMD.pdf][link]]      |
-| DigiKey | 160-1445-2-ND     | Lite-On Inc                      | [[https://www.digikey.com/product-detail/en/lite-on-inc/LTST-C191KFKT/160-1445-2-ND/386833][link]] | LTST-C191KFKT      | [0603]                         | LED                             |        2 |       0.04 |       0.08 | [[http://optoelectronics.liteon.com/upload/download/DS22-2000-222/LTST-C191KFKT.pdf][link]]      |
-| Mouser  | 667-ERJ-3EKF2201V | Panasonic Industrial Devices     | [[https://www.mouser.com/ProductDetail/Vishay/CRCW02012K20JNED?qs%3DsGAEpiMZZMvdGkrng054tx3Kv%25252bhbWMRFaxxOJx%25252bImNQ%253d][link]] | ERJ-3EKF2201V      | [0603]                         | 2.2 kOhm Resistor               |        2 |      $0.22 |       0.44 | [[https://www.mouser.com/ds/2/427/crcw0201e3-239671.pdf][link]]      |
-| DigiKey | 497-4525-6-ND     | STMicroelectronics               | [[https://www.digikey.com/product-detail/en/stmicroelectronics/STN4NF03L/497-4525-6-ND/1848877][link]] | STN4NF03L          | SOT-233                        | MOSFET                          |        4 |      $1.33 |       5.32 | [[http://www.st.com/content/ccc/resource/technical/document/datasheet/04/34/f3/84/3e/6f/4c/eb/CD00002146.pdf/files/CD00002146.pdf/jcr:content/translations/en.CD00002146.pdf][link]]      |
-| Mouser  | 652-CD0603-S01575 | Bourns                           | [[https://www.mouser.com/ProductDetail/Bourns/CD0603-S01575?qs%3DFITO%252f%252fQgYDlmbwJLjhqThQ%253d%253d][link]] | CD0603-S01575      | [0603]                         | Diode                           |        4 |        0.4 |        1.6 | [[https://www.mouser.com/ds/2/54/D0603_1005-777241.pdf][link]]      |
+| Description                     | Datasheet | Vendor  | Vendor Part #     | Manufacturer                     | Link | Part #             | Package                        | Quantity | Unit Price | Total Cost |
+|---------------------------------+-----------+---------+-------------------+----------------------------------+------+--------------------+--------------------------------+----------+------------+------------|
+| Microcontroller                 | [[http://www.atmel.com/Images/Atmel-42735-8-bit-AVR-Microcontroller-ATmega328-328P_Datasheet.pdf][link]]      | Digikey | ATMEGA328P-AU-ND  | Microchip                        | [[http://www.digikey.com/product-detail/en/microchip-technology/ATMEGA328P-AU/ATMEGA328P-AU-ND/1832260][link]] | ATMEGA328P-AU      | 32-TQFP                        |        1 |       2.13 |       2.13 |
+| Voltage Regulator (Buck, Boost) | [[https://datasheets.maximintegrated.com/en/ds/MAX1672.pdf][link]]      | DigiKey | MAX1672EEE+T-ND   | Maxim Integrated                 | [[https://www.digikey.com/product-detail/en/maxim-integrated/MAX1672EEE-T/MAX1672EEE-T-ND/1515219][link]] | MAX1672EEE+T       | 16-SSOP (0.154", 3.90mm Width) |        1 |       3.32 |       3.32 |
+| 100 uF capacitor                | [[http://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM31CD80J107ME39-01.pdf][link]]      | DigiKey | 490-10525-2-ND    | Murata Electronics North America | [[https://www.digikey.com/product-detail/en/murata-electronics-north-america/GRM31CD80J107ME39L/490-10525-2-ND/5027609][link]] | GRM31CD80J107ME39L | [1206]                         |        1 |       0.13 |       0.13 |
+| 10 uF capacitor                 | [[https://www.yuden.co.jp/productdata/catalog/mlcc_all_e.pdf][link]]      | DigiKey | 587-1256-2-ND     | Taiyo Yuden                      | [[https://www.digikey.com/product-detail/en/taiyo-yuden/JMK107BJ106MA-T/587-1256-2-ND/930608][link]] | JMK107BJ106MA-T    | [0603]                         |        1 |       0.02 |       0.02 |
+| 100 nF capacitor                | [[https://content.kemet.com/datasheets/KEM_C1002_X7R_SMD.pdf][link]]      | DigiKey | 399-1096-2-ND     | KEMET                            | [[https://www.digikey.com/product-detail/en/kemet/C0603C104K4RACTU/399-1096-2-ND/411095][link]] | C0603C104K4RACTU   | [0603]                         |        5 |       0.01 |       0.01 |
+| LED                             | [[http://optoelectronics.liteon.com/upload/download/DS22-2000-222/LTST-C191KFKT.pdf][link]]      | DigiKey | 160-1445-2-ND     | Lite-On Inc                      | [[https://www.digikey.com/product-detail/en/lite-on-inc/LTST-C191KFKT/160-1445-2-ND/386833][link]] | LTST-C191KFKT      | [0603]                         |        2 |       0.04 |       0.08 |
+| 2.2 kOhm Resistor               | [[https://www.mouser.com/ds/2/427/crcw0201e3-239671.pdf][link]]      | Mouser  | 667-ERJ-3EKF2201V | Panasonic Industrial Devices     | [[https://www.mouser.com/ProductDetail/Vishay/CRCW02012K20JNED?qs%3DsGAEpiMZZMvdGkrng054tx3Kv%25252bhbWMRFaxxOJx%25252bImNQ%253d][link]] | ERJ-3EKF2201V      | [0603]                         |        2 |      $0.22 |       0.44 |
+| MOSFET                          | [[http://www.st.com/content/ccc/resource/technical/document/datasheet/04/34/f3/84/3e/6f/4c/eb/CD00002146.pdf/files/CD00002146.pdf/jcr:content/translations/en.CD00002146.pdf][link]]      | DigiKey | 497-4525-6-ND     | STMicroelectronics               | [[https://www.digikey.com/product-detail/en/stmicroelectronics/STN4NF03L/497-4525-6-ND/1848877][link]] | STN4NF03L          | SOT-233                        |        4 |      $1.33 |       5.32 |
+| Diode                           | [[https://www.mouser.com/ds/2/54/D0603_1005-777241.pdf][link]]      | Mouser  | 652-CD0603-S01575 | Bourns                           | [[https://www.mouser.com/ProductDetail/Bourns/CD0603-S01575?qs%3DFITO%252f%252fQgYDlmbwJLjhqThQ%253d%253d][link]] | CD0603-S01575      | [0603]                         |        4 |        0.4 |        1.6 |
 * Why use Charge Pumps over Inductive?
   - AKA switched-capacitor
   - Charge and Discharge of capactior (flying capacitor)
