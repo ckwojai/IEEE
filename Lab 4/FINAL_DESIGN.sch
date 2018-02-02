@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="8.4.1">
+<eagle version="8.4.3">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -1810,69 +1810,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </deviceset>
 </devicesets>
 </library>
-<library name="SiT8021">
-<packages>
-<package name="BGA4C40P2X2_84X84X60N">
-<wire x1="-0.42" y1="-0.42" x2="0.42" y2="-0.42" width="0.127" layer="51"/>
-<wire x1="0.42" y1="-0.42" x2="0.42" y2="0.42" width="0.127" layer="51"/>
-<wire x1="0.42" y1="0.42" x2="-0.42" y2="0.42" width="0.127" layer="51"/>
-<wire x1="-0.42" y1="0.42" x2="-0.42" y2="-0.42" width="0.127" layer="51"/>
-<wire x1="-0.49" y1="-0.49" x2="-0.49" y2="-0.245" width="0.127" layer="21"/>
-<wire x1="-0.245" y1="-0.49" x2="-0.49" y2="-0.49" width="0.127" layer="21"/>
-<wire x1="-0.49" y1="0.245" x2="-0.49" y2="0.49" width="0.127" layer="21"/>
-<wire x1="-0.245" y1="0.49" x2="-0.49" y2="0.49" width="0.127" layer="21"/>
-<wire x1="0.49" y1="0.49" x2="0.245" y2="0.49" width="0.127" layer="21"/>
-<wire x1="0.49" y1="0.49" x2="0.49" y2="0.245" width="0.127" layer="21"/>
-<wire x1="0.49" y1="-0.49" x2="0.245" y2="-0.49" width="0.127" layer="21"/>
-<wire x1="0.49" y1="-0.245" x2="0.49" y2="-0.49" width="0.127" layer="21"/>
-<wire x1="-0.7" y1="0.7" x2="0.7" y2="0.7" width="0.05" layer="39"/>
-<wire x1="0.7" y1="0.7" x2="0.7" y2="-0.7" width="0.05" layer="39"/>
-<wire x1="0.7" y1="-0.7" x2="-0.7" y2="-0.7" width="0.05" layer="39"/>
-<wire x1="-0.7" y1="-0.7" x2="-0.7" y2="0.7" width="0.05" layer="39"/>
-<text x="-0.912759375" y="0.97795625" size="0.325984375" layer="25">&gt;NAME</text>
-<text x="-0.913271875" y="-1.30458125" size="0.326165625" layer="27">&gt;VALUE</text>
-<circle x="-0.7" y="0.2" radius="0.03" width="0.06" layer="21"/>
-<smd name="B1" x="-0.2" y="-0.2" dx="0.25" dy="0.25" layer="1" roundness="100"/>
-<smd name="B2" x="0.2" y="-0.2" dx="0.25" dy="0.25" layer="1" roundness="100"/>
-<smd name="A2" x="0.2" y="0.2" dx="0.25" dy="0.25" layer="1" roundness="100"/>
-<smd name="A1" x="-0.2" y="0.2" dx="0.25" dy="0.25" layer="1" roundness="100"/>
-</package>
-</packages>
-<symbols>
-<symbol name="SIT8021">
-<wire x1="-7.62" y1="7.62" x2="7.62" y2="7.62" width="0.254" layer="94"/>
-<wire x1="7.62" y1="7.62" x2="7.62" y2="-7.62" width="0.254" layer="94"/>
-<wire x1="7.62" y1="-7.62" x2="-7.62" y2="-7.62" width="0.254" layer="94"/>
-<wire x1="-7.62" y1="-7.62" x2="-7.62" y2="7.62" width="0.254" layer="94"/>
-<pin name="ST" x="-12.7" y="5.08" length="middle"/>
-<pin name="OUT" x="-12.7" y="-5.08" length="middle"/>
-<pin name="GND" x="12.7" y="5.08" length="middle" rot="R180"/>
-<pin name="VDD" x="12.7" y="-5.08" length="middle" rot="R180"/>
-<text x="-7.62" y="7.62" size="1.778" layer="95">&gt;NAME</text>
-<text x="-7.62" y="-10.16" size="1.778" layer="96">&gt;VALUE</text>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="SIT8021">
-<gates>
-<gate name="G$1" symbol="SIT8021" x="0" y="0"/>
-</gates>
-<devices>
-<device name="SIT8021" package="BGA4C40P2X2_84X84X60N">
-<connects>
-<connect gate="G$1" pin="GND" pad="B1"/>
-<connect gate="G$1" pin="OUT" pad="A2"/>
-<connect gate="G$1" pin="ST" pad="A1"/>
-<connect gate="G$1" pin="VDD" pad="B2"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="SparkFun-LED">
 <description>&lt;h3&gt;SparkFun LEDs&lt;/h3&gt;
 This library contains discrete LEDs for illumination or indication, but no displays.
@@ -2019,6 +1956,76 @@ Used in manufacturing several products at SparkFun.
 </deviceset>
 </devicesets>
 </library>
+<library name="LTC6390">
+<packages>
+<package name="SOP65P490X110-8N">
+<wire x1="-1.5" y1="1.5" x2="1.5" y2="1.5" width="0.127" layer="51"/>
+<wire x1="1.5" y1="1.5" x2="1.5" y2="-1.5" width="0.127" layer="51"/>
+<wire x1="1.5" y1="-1.5" x2="-1.5" y2="-1.5" width="0.127" layer="51"/>
+<wire x1="-1.5" y1="-1.5" x2="-1.5" y2="1.5" width="0.127" layer="51"/>
+<wire x1="-1.5" y1="-1.5" x2="1.5" y2="-1.5" width="0.127" layer="21"/>
+<wire x1="-1.5" y1="1.5" x2="1.5" y2="1.5" width="0.127" layer="21"/>
+<circle x="-3.05" y="1.575" radius="0.1" width="0.2" layer="21"/>
+<wire x1="-3" y1="1.75" x2="3" y2="1.75" width="0.05" layer="39"/>
+<wire x1="3" y1="1.75" x2="3" y2="-1.75" width="0.05" layer="39"/>
+<wire x1="3" y1="-1.75" x2="-3" y2="-1.75" width="0.05" layer="39"/>
+<wire x1="-3" y1="-1.75" x2="-3" y2="1.75" width="0.05" layer="39"/>
+<text x="-13.4912" y="8.99348125" size="5.711409375" layer="25">&gt;NAME</text>
+<text x="-13.7068" y="-14.8487" size="5.80253125" layer="27">&gt;VALUE</text>
+<circle x="-1" y="1" radius="0.22360625" width="0.127" layer="51"/>
+<smd name="2" x="-2.11" y="0.325" dx="1.25" dy="0.46" layer="1"/>
+<smd name="7" x="2.11" y="0.325" dx="1.25" dy="0.46" layer="1"/>
+<smd name="1" x="-2.11" y="0.975" dx="1.25" dy="0.46" layer="1"/>
+<smd name="3" x="-2.11" y="-0.325" dx="1.25" dy="0.46" layer="1"/>
+<smd name="4" x="-2.11" y="-0.975" dx="1.25" dy="0.46" layer="1"/>
+<smd name="8" x="2.11" y="0.975" dx="1.25" dy="0.46" layer="1"/>
+<smd name="6" x="2.11" y="-0.325" dx="1.25" dy="0.46" layer="1"/>
+<smd name="5" x="2.11" y="-0.975" dx="1.25" dy="0.46" layer="1"/>
+</package>
+</packages>
+<symbols>
+<symbol name="LTC6930CMS8-8.19">
+<wire x1="-15.24" y1="12.7" x2="15.24" y2="12.7" width="0.254" layer="94"/>
+<wire x1="15.24" y1="12.7" x2="15.24" y2="-12.7" width="0.254" layer="94"/>
+<wire x1="15.24" y1="-12.7" x2="-15.24" y2="-12.7" width="0.254" layer="94"/>
+<wire x1="-15.24" y1="-12.7" x2="-15.24" y2="12.7" width="0.254" layer="94"/>
+<pin name="V+" x="-20.32" y="10.16" length="middle"/>
+<pin name="GND" x="-20.32" y="5.08" length="middle"/>
+<pin name="DIVA" x="-20.32" y="-5.08" length="middle"/>
+<pin name="DIVB" x="-20.32" y="-10.16" length="middle"/>
+<pin name="V+2" x="20.32" y="10.16" length="middle" rot="R180"/>
+<pin name="OUT" x="20.32" y="5.08" length="middle" rot="R180"/>
+<pin name="GND2" x="20.32" y="-5.08" length="middle" rot="R180"/>
+<pin name="DIVC" x="20.32" y="-10.16" length="middle" rot="R180"/>
+<text x="-15.24" y="15.24" size="1.778" layer="95">&lt;NAME</text>
+<text x="-15.24" y="-15.24" size="1.778" layer="96">&lt;VALUE</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="LTC6930CMS8-8.19">
+<gates>
+<gate name="G$1" symbol="LTC6930CMS8-8.19" x="0" y="0"/>
+</gates>
+<devices>
+<device name="LTC6930CMS8-8.19" package="SOP65P490X110-8N">
+<connects>
+<connect gate="G$1" pin="DIVA" pad="3"/>
+<connect gate="G$1" pin="DIVB" pad="4"/>
+<connect gate="G$1" pin="DIVC" pad="5"/>
+<connect gate="G$1" pin="GND" pad="2"/>
+<connect gate="G$1" pin="GND2" pad="6"/>
+<connect gate="G$1" pin="OUT" pad="7"/>
+<connect gate="G$1" pin="V+" pad="1"/>
+<connect gate="G$1" pin="V+2" pad="8"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -2071,11 +2078,12 @@ Used in manufacturing several products at SparkFun.
 <part name="C14" library="SparkFun-Passives" deviceset="CAP" device="0603-CAP" value="4.7uF"/>
 <part name="DIODE4" library="quad" deviceset="DB2W40300L" device=""/>
 <part name="C11" library="SparkFun-Passives" deviceset="CAP" device="0603-CAP" value="100uF"/>
-<part name="U$3" library="SiT8021" deviceset="SIT8021" device="SIT8021"/>
 <part name="R9" library="SparkFun-Resistors" deviceset="2.2KOHM" device="-0603-1/10W-1%" value="1k"/>
 <part name="D1" library="SparkFun-LED" deviceset="LED-YELLOW" device="LILYPAD" value="Yellow"/>
 <part name="R12" library="SparkFun-Resistors" deviceset="2.2KOHM" device="-0603-1/10W-1%" value="1k"/>
 <part name="D2" library="SparkFun-LED" deviceset="LED-YELLOW" device="LILYPAD" value="Yellow"/>
+<part name="U$3" library="LTC6390" deviceset="LTC6930CMS8-8.19" device="LTC6930CMS8-8.19"/>
+<part name="C15" library="SparkFun-Capacitors" deviceset="0.1UF-25V(+80/-20%)(0603)" device="" value="100nF"/>
 </parts>
 <sheets>
 <sheet>
@@ -2124,11 +2132,12 @@ Used in manufacturing several products at SparkFun.
 <instance part="C14" gate="G$1" x="-254" y="33.02"/>
 <instance part="DIODE4" gate="G$1" x="-236.22" y="109.22" rot="MR270"/>
 <instance part="C11" gate="G$1" x="-317.5" y="104.14"/>
-<instance part="U$3" gate="G$1" x="-111.76" y="48.26"/>
 <instance part="R9" gate="G$1" x="-81.28" y="111.76" rot="R180"/>
 <instance part="D1" gate="G$1" x="-71.12" y="111.76" rot="R90"/>
 <instance part="R12" gate="G$1" x="-45.72" y="109.22" rot="R180"/>
 <instance part="D2" gate="G$1" x="-38.1" y="109.22" rot="R90"/>
+<instance part="U$3" gate="G$1" x="-99.06" y="38.1"/>
+<instance part="C15" gate="G$1" x="-55.88" y="38.1"/>
 </instances>
 <busses>
 </busses>
@@ -2265,16 +2274,6 @@ Used in manufacturing several products at SparkFun.
 <junction x="-246.38" y="10.16"/>
 </segment>
 <segment>
-<pinref part="U$3" gate="G$1" pin="GND"/>
-<wire x1="-99.06" y1="53.34" x2="-83.82" y2="53.34" width="0.1524" layer="91"/>
-<label x="-88.9" y="53.34" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="U$3" gate="G$1" pin="ST"/>
-<wire x1="-124.46" y1="53.34" x2="-134.62" y2="53.34" width="0.1524" layer="91"/>
-<label x="-134.62" y="53.34" size="1.778" layer="95"/>
-</segment>
-<segment>
 <pinref part="U$2" gate="G$1" pin="FB"/>
 <wire x1="-269.24" y1="53.34" x2="-254" y2="53.34" width="0.1524" layer="91"/>
 <label x="-256.54" y="53.34" size="1.778" layer="95"/>
@@ -2301,6 +2300,36 @@ Used in manufacturing several products at SparkFun.
 <pinref part="C14" gate="G$1" pin="2"/>
 <wire x1="-254" y1="30.48" x2="-254" y2="25.4" width="0.1524" layer="91"/>
 <label x="-254" y="25.4" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U$3" gate="G$1" pin="GND"/>
+<wire x1="-119.38" y1="43.18" x2="-129.54" y2="43.18" width="0.1524" layer="91"/>
+<label x="-129.54" y="43.18" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U$3" gate="G$1" pin="DIVA"/>
+<wire x1="-119.38" y1="33.02" x2="-129.54" y2="33.02" width="0.1524" layer="91"/>
+<label x="-129.54" y="33.02" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U$3" gate="G$1" pin="DIVB"/>
+<wire x1="-119.38" y1="27.94" x2="-129.54" y2="27.94" width="0.1524" layer="91"/>
+<label x="-129.54" y="27.94" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U$3" gate="G$1" pin="GND2"/>
+<wire x1="-78.74" y1="33.02" x2="-68.58" y2="33.02" width="0.1524" layer="91"/>
+<label x="-73.66" y="33.02" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U$3" gate="G$1" pin="DIVC"/>
+<wire x1="-78.74" y1="27.94" x2="-68.58" y2="27.94" width="0.1524" layer="91"/>
+<label x="-73.66" y="27.94" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="C15" gate="G$1" pin="2"/>
+<wire x1="-55.88" y1="35.56" x2="-55.88" y2="25.4" width="0.1524" layer="91"/>
+<label x="-53.34" y="27.94" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="FTDI-RX" class="0">
@@ -2389,16 +2418,26 @@ Used in manufacturing several products at SparkFun.
 <label x="-152.4" y="137.16" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="U$3" gate="G$1" pin="VDD"/>
-<wire x1="-99.06" y1="43.18" x2="-83.82" y2="43.18" width="0.1524" layer="91"/>
-<label x="-88.9" y="43.18" size="1.778" layer="95"/>
-</segment>
-<segment>
 <pinref part="U$2" gate="G$1" pin="OUT"/>
 <wire x1="-269.24" y1="45.72" x2="-254" y2="45.72" width="0.1524" layer="91"/>
 <label x="-254" y="45.72" size="1.778" layer="95"/>
 <pinref part="C14" gate="G$1" pin="1"/>
 <wire x1="-254" y1="45.72" x2="-254" y2="38.1" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U$3" gate="G$1" pin="V+"/>
+<wire x1="-119.38" y1="48.26" x2="-129.54" y2="48.26" width="0.1524" layer="91"/>
+<label x="-129.54" y="48.26" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U$3" gate="G$1" pin="V+2"/>
+<wire x1="-78.74" y1="48.26" x2="-68.58" y2="48.26" width="0.1524" layer="91"/>
+<label x="-73.66" y="48.26" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="C15" gate="G$1" pin="1"/>
+<wire x1="-55.88" y1="43.18" x2="-55.88" y2="50.8" width="0.1524" layer="91"/>
+<label x="-53.34" y="48.26" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="RF-CE" class="0">
@@ -2731,8 +2770,8 @@ Used in manufacturing several products at SparkFun.
 </segment>
 <segment>
 <pinref part="U$3" gate="G$1" pin="OUT"/>
-<wire x1="-124.46" y1="43.18" x2="-134.62" y2="43.18" width="0.1524" layer="91"/>
-<label x="-134.62" y="43.18" size="1.778" layer="95"/>
+<wire x1="-78.74" y1="43.18" x2="-68.58" y2="43.18" width="0.1524" layer="91"/>
+<label x="-76.2" y="43.18" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="IMU-INT" class="0">
