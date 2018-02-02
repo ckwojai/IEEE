@@ -2339,9 +2339,9 @@ Used in manufacturing several products at SparkFun.
 <label x="-187.96" y="121.92" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="U1" gate="U$1" pin="PD1(TXD)"/>
-<wire x1="-88.9" y1="96.52" x2="-83.82" y2="96.52" width="0.1524" layer="91"/>
-<label x="-86.36" y="96.52" size="1.778" layer="95"/>
+<pinref part="U1" gate="U$1" pin="PD0(RXD)"/>
+<wire x1="-88.9" y1="99.06" x2="-83.82" y2="99.06" width="0.1524" layer="91"/>
+<label x="-86.36" y="99.06" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="FTDI-TX" class="0">
@@ -2351,9 +2351,9 @@ Used in manufacturing several products at SparkFun.
 <label x="-187.96" y="119.38" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="U1" gate="U$1" pin="PD0(RXD)"/>
-<wire x1="-88.9" y1="99.06" x2="-83.82" y2="99.06" width="0.1524" layer="91"/>
-<label x="-86.36" y="99.06" size="1.778" layer="95"/>
+<pinref part="U1" gate="U$1" pin="PD1(TXD)"/>
+<wire x1="-88.9" y1="96.52" x2="-83.82" y2="96.52" width="0.1524" layer="91"/>
+<label x="-86.36" y="96.52" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="RESET" class="0">
