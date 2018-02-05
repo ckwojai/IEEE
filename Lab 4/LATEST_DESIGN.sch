@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="8.4.1">
+<eagle version="8.4.3">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -2192,6 +2192,16 @@ Rebel - DIO-09553&lt;br&gt;
 <pinref part="D1" gate="G$1" pin="C"/>
 <wire x1="-20.32" y1="71.12" x2="-20.32" y2="66.04" width="0.1524" layer="91"/>
 <label x="-20.32" y="66.04" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U$4" gate="G$1" pin="SEL"/>
+<wire x1="-294.64" y1="86.36" x2="-302.26" y2="86.36" width="0.1524" layer="91"/>
+<label x="-304.8" y="86.36" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U$4" gate="G$1" pin="SHDN"/>
+<wire x1="-294.64" y1="76.2" x2="-302.26" y2="76.2" width="0.1524" layer="91"/>
+<label x="-304.8" y="76.2" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="FTDI-RX" class="0">
