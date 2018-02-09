@@ -1,0 +1,10 @@
+* Tools
+  - Pad, Trace, Polygon, Drill Hole, Silkscreen
+  - ratsnest: reevaluate airwires for shortest path
+  - ripup: delete routes
+  - mirror: flip component to the other side
+  - via: for connecting routes on different layers 
+* Some rule of thumb
+  - Trace: short and wide, increase spaces between traces
+  - Trace width: 12 mm for digital signal; 20 mm for analog; Power, GND, Motor: 30mm;
+  - 
