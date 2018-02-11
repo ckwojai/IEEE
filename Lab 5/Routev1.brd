@@ -1058,7 +1058,6 @@ design rules under a new name.</description>
 <wire x1="9.971" y1="68.7436" x2="10.0396875" y2="68.7436" width="0.1524" layer="1"/>
 <wire x1="10.0396875" y1="67.8264" x2="9.5114" y2="67.8264" width="0.1524" layer="1"/>
 <wire x1="9.5114" y1="67.8264" x2="9.32" y2="67.635" width="0.1524" layer="1"/>
-<wire x1="3.7846" y1="74.93" x2="9.971" y2="68.7436" width="0" layer="19" extent="1-16"/>
 <wire x1="25.4" y1="68.2346" x2="23.13" y2="68.85" width="0" layer="19" extent="1-1"/>
 <wire x1="19.05" y1="66.46" x2="23.13" y2="68.85" width="0" layer="19" extent="1-1"/>
 <wire x1="19.05" y1="62.65" x2="19.05" y2="66.46" width="0" layer="19" extent="1-1"/>
@@ -1098,7 +1097,8 @@ design rules under a new name.</description>
 <wire x1="25.76" y1="41.57" x2="20.18" y2="43.51" width="0" layer="19" extent="1-1"/>
 <wire x1="6.8006" y1="39.685" x2="10.0203" y2="46.6725" width="0" layer="19" extent="1-1"/>
 <wire x1="3.73" y1="39.3954" x2="6.8006" y2="39.685" width="0" layer="19" extent="1-1"/>
-<wire x1="3.7846" y1="74.93" x2="11.8246" y2="77.47" width="0" layer="19" extent="1-1"/>
+<wire x1="3.7846" y1="74.93" x2="9.971" y2="68.7436" width="0" layer="19" extent="1-1"/>
+<wire x1="11.8246" y1="77.47" x2="3.7846" y2="74.93" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="FTDI-RX">
 <contactref element="J1" pad="3"/>
@@ -1347,7 +1347,7 @@ design rules under a new name.</description>
 <signal name="N$10">
 <contactref element="U1" pad="28"/>
 <contactref element="R12" pad="2"/>
-<wire x1="11.68" y1="64.58" x2="9.74" y2="74.93" width="0" layer="19" extent="1-1"/>
+<wire x1="9.74" y1="74.93" x2="11.68" y2="64.58" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$11">
 <wire x1="27" y1="80" x2="27" y2="33" width="0.1524" layer="1"/>
