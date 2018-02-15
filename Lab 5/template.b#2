@@ -258,6 +258,43 @@ by exp-lbrs.ulp</description>
 <smd name="NEG" x="0" y="1.55" dx="1.22" dy="0.85" layer="1"/>
 <smd name="POS" x="0" y="-1.5" dx="1.22" dy="0.85" layer="1"/>
 </package>
+<package name="FTDI_DEVICE_RA_SMT">
+<description>Package for devices meant to mate to an FTDI connector.</description>
+<wire x1="7.62" y1="1.25" x2="-7.62" y2="1.25" width="0.127" layer="51"/>
+<wire x1="-7.62" y1="1.25" x2="-7.62" y2="-1.25" width="0.127" layer="51"/>
+<wire x1="-7.62" y1="-1.25" x2="-6.35" y2="-1.25" width="0.127" layer="51"/>
+<wire x1="-6.35" y1="-1.25" x2="-3.81" y2="-1.25" width="0.127" layer="51"/>
+<wire x1="-3.81" y1="-1.25" x2="-1.27" y2="-1.25" width="0.127" layer="51"/>
+<wire x1="-1.27" y1="-1.25" x2="1.27" y2="-1.25" width="0.127" layer="51"/>
+<wire x1="1.27" y1="-1.25" x2="3.81" y2="-1.25" width="0.127" layer="51"/>
+<wire x1="3.81" y1="-1.25" x2="6.35" y2="-1.25" width="0.127" layer="51"/>
+<wire x1="6.35" y1="-1.25" x2="7.62" y2="-1.25" width="0.127" layer="51"/>
+<wire x1="7.62" y1="-1.25" x2="7.62" y2="1.25" width="0.127" layer="51"/>
+<wire x1="6.35" y1="-1.25" x2="6.35" y2="-7.25" width="0.127" layer="51"/>
+<wire x1="3.81" y1="-1.25" x2="3.81" y2="-7.25" width="0.127" layer="51"/>
+<wire x1="1.27" y1="-1.25" x2="1.27" y2="-7.25" width="0.127" layer="51"/>
+<wire x1="-1.27" y1="-1.25" x2="-1.27" y2="-7.25" width="0.127" layer="51"/>
+<wire x1="-3.81" y1="-1.25" x2="-3.81" y2="-7.25" width="0.127" layer="51"/>
+<wire x1="-6.35" y1="-1.25" x2="-6.35" y2="-7.25" width="0.127" layer="51"/>
+<smd name="1" x="-6.35" y="5" dx="3" dy="1" layer="1" rot="R90"/>
+<smd name="2" x="-3.81" y="5" dx="3" dy="1" layer="1" rot="R90"/>
+<smd name="3" x="-1.27" y="5" dx="3" dy="1" layer="1" rot="R90"/>
+<smd name="4" x="1.27" y="5" dx="3" dy="1" layer="1" rot="R90"/>
+<smd name="5" x="3.81" y="5" dx="3" dy="1" layer="1" rot="R90"/>
+<smd name="6" x="6.35" y="5" dx="3" dy="1" layer="1" rot="R90"/>
+<text x="-1.905" y="1.905" size="0.8128" layer="25">&gt;NAME</text>
+<text x="-1.905" y="0.635" size="0.8128" layer="27">&gt;VALUE</text>
+<text x="-3.81" y="-1.016" size="0.8128" layer="51" font="vector" ratio="15" rot="R90" align="center-left">TXO</text>
+<text x="-1.27" y="-1.016" size="0.8128" layer="51" font="vector" ratio="15" rot="R90" align="center-left">RXI</text>
+<text x="1.27" y="-1.016" size="0.8128" layer="51" font="vector" ratio="15" rot="R90" align="center-left">VCC</text>
+<text x="-6.35" y="-1.016" size="0.8128" layer="51" font="vector" ratio="15" rot="R90" align="center-left">DTR</text>
+<text x="6.35" y="-1.016" size="0.8128" layer="51" font="vector" ratio="15" rot="R90" align="center-left">GND</text>
+<text x="3.81" y="-1.016" size="0.8128" layer="51" font="vector" ratio="15" rot="R90" align="center-left">CTS</text>
+<text x="-7.366" y="-2.54" size="0.8128" layer="51" font="vector" ratio="15" rot="R90" align="top-center">GRN</text>
+<text x="7.366" y="-2.54" size="0.8128" layer="51" font="vector" ratio="15" rot="R90" align="bottom-center">BLK</text>
+<hole x="-5.08" y="0" drill="1.4"/>
+<hole x="5.08" y="0" drill="1.4"/>
+</package>
 <package name="WIRELESS-NRF24L01">
 <description>&lt;b&gt;2.4 GHz Wireless Module&lt;/b&gt; based on &lt;b&gt;NRF24L01&lt;/b&gt; chip</description>
 <wire x1="-14.3764" y1="8.001" x2="8.128" y2="8.001" width="0.127" layer="21"/>
@@ -460,27 +497,6 @@ by exp-lbrs.ulp</description>
 <smd name="32" x="-2.8" y="4.2926" dx="0.5588" dy="1.27" layer="1"/>
 <text x="-3.175" y="5.08" size="0.4064" layer="25">&gt;NAME</text>
 <text x="-2.54" y="-6.35" size="0.4064" layer="27">&gt;VALUE</text>
-</package>
-<package name="FTDI_DEVICE_SIDE">
-<description>Package for devices meant to mate to an FTDI connector.</description>
-<wire x1="-7.62" y1="1.27" x2="7.62" y2="1.27" width="0.127" layer="21"/>
-<wire x1="7.62" y1="1.27" x2="7.62" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="7.62" y1="-1.27" x2="-7.62" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="-7.62" y1="-1.27" x2="-7.62" y2="1.27" width="0.127" layer="21"/>
-<pad name="P$1" x="-6.35" y="0" drill="1.016" diameter="1.8796" shape="square"/>
-<pad name="P$2" x="-3.81" y="0" drill="1.016" diameter="1.8796"/>
-<pad name="P$3" x="-1.27" y="0" drill="1.016" diameter="1.8796"/>
-<pad name="P$4" x="1.27" y="0" drill="1.016" diameter="1.8796"/>
-<pad name="P$5" x="3.81" y="0" drill="1.016" diameter="1.8796"/>
-<pad name="P$6" x="6.35" y="0" drill="1.016" diameter="1.8796"/>
-<text x="-7.874" y="-0.889" size="1.27" layer="21" font="vector" ratio="15" rot="R90">GRN</text>
-<text x="9.144" y="-0.889" size="1.27" layer="21" font="vector" ratio="15" rot="R90">BLK</text>
-<text x="-4.826" y="1.524" size="0.8128" layer="21" font="vector" ratio="15">TXO</text>
-<text x="-2.286" y="1.524" size="0.8128" layer="21" font="vector" ratio="15">RXI</text>
-<text x="0.254" y="1.524" size="0.8128" layer="21" font="vector" ratio="15">VCC</text>
-<text x="-7.366" y="1.524" size="0.8128" layer="21" font="vector" ratio="15">DTR</text>
-<text x="5.334" y="1.524" size="0.8128" layer="21" font="vector" ratio="15">GND</text>
-<text x="2.794" y="1.524" size="0.8128" layer="21" font="vector" ratio="15">CTS</text>
 </package>
 </packages>
 </library>
@@ -903,6 +919,9 @@ design rules under a new name.</description>
 <element name="DIODE2" library="quad" package="MINI2-F3-B" value="DB2W40300L" x="58.3946" y="27.94"/>
 <element name="DIODE3" library="quad" package="MINI2-F3-B" value="DB2W40300L" x="58.3946" y="50.8"/>
 <element name="DIODE4" library="quad" package="MINI2-F3-B" value="DB2W40300L" x="84.3746" y="20.67"/>
+<element name="J1" library="quad" package="FTDI_DEVICE_RA_SMT" value="FTDI_DEVICERA_SMT" x="90.1446" y="49.53">
+<attribute name="PROD_ID" value="CONN-08971" x="90.1446" y="49.53" size="1.778" layer="27" display="off"/>
+</element>
 <element name="L1" library="SparkFun-Coils" package="0603" value="10uH" x="83.13" y="11.78">
 <attribute name="PROD_ID" value="NDUC-07874" x="83.13" y="11.78" size="1.778" layer="27" display="off"/>
 </element>
@@ -968,10 +987,10 @@ design rules under a new name.</description>
 <element name="U3" library="quad" package="TQFP32-08" value="ATMEGA328P_TQFP" x="25.5" y="70">
 <attribute name="PROD_ID" value="IC-09069" x="25.5" y="70" size="1.778" layer="27" display="off"/>
 </element>
-<element name="J1" library="quad" package="FTDI_DEVICE_SIDE" value="FTDI_DEVICE" x="87.5" y="51.5"/>
 </elements>
 <signals>
 <signal name="GND">
+<contactref element="J1" pad="6"/>
 <contactref element="U2" pad="GND"/>
 <contactref element="M1" pad="1"/>
 <contactref element="R2" pad="1"/>
@@ -1012,8 +1031,8 @@ design rules under a new name.</description>
 <contactref element="U3" pad="21"/>
 <contactref element="U3" pad="3"/>
 <contactref element="U3" pad="5"/>
-<contactref element="J1" pad="P$6"/>
 <wire x1="87.3506" y1="57.785" x2="90.17" y2="71.39" width="0" layer="19" extent="1-1"/>
+<wire x1="96.4946" y1="54.53" x2="87.3506" y2="57.785" width="0" layer="19" extent="1-1"/>
 <wire x1="67.31" y1="69" x2="90.17" y2="71.39" width="0" layer="19" extent="1-1"/>
 <wire x1="64.34" y1="68.875" x2="67.31" y2="69" width="0" layer="19" extent="1-1"/>
 <wire x1="64.34" y1="69.525" x2="64.34" y2="68.875" width="0" layer="19" extent="1-1"/>
@@ -1024,10 +1043,6 @@ design rules under a new name.</description>
 <wire x1="40.64" y1="77.05" x2="56.2746" y2="77.47" width="0" layer="19" extent="1-1"/>
 <wire x1="40.64" y1="73.24" x2="40.64" y2="77.05" width="0" layer="19" extent="1-1"/>
 <wire x1="33.02" y1="75.78" x2="40.64" y2="77.05" width="0" layer="19" extent="1-1"/>
-<wire x1="29.7926" y1="70.4" x2="33.02" y2="75.78" width="0" layer="19" extent="1-1"/>
-<wire x1="21.2074" y1="71.2" x2="29.7926" y2="70.4" width="0" layer="19" extent="1-1"/>
-<wire x1="21.2074" y1="69.6" x2="21.2074" y2="71.2" width="0" layer="19" extent="1-1"/>
-<wire x1="3.7846" y1="74.93" x2="21.2074" y2="71.2" width="0" layer="19" extent="1-1"/>
 <wire x1="63.1546" y1="47.26" x2="64.34" y2="68.875" width="0" layer="19" extent="1-1"/>
 <wire x1="57.57" y1="45.72" x2="63.1546" y2="47.26" width="0" layer="19" extent="1-1"/>
 <wire x1="48.68" y1="48.26" x2="57.57" y2="45.72" width="0" layer="19" extent="1-1"/>
@@ -1049,20 +1064,23 @@ design rules under a new name.</description>
 <wire x1="95.41" y1="15.59" x2="94.6489" y2="17.8125" width="0" layer="19" extent="1-1"/>
 <wire x1="94.6489" y1="20.3525" x2="94.6489" y2="17.8125" width="0" layer="19" extent="1-1"/>
 <wire x1="94.14" y1="10.51" x2="95.41" y2="15.59" width="0" layer="19" extent="1-1"/>
-<wire x1="11.43" y1="37.68" x2="21.2074" y2="69.6" width="0" layer="19" extent="1-1"/>
+<wire x1="3.7846" y1="74.93" x2="33.02" y2="75.78" width="0" layer="19" extent="1-1"/>
+<wire x1="13.97" y1="35.56" x2="48.68" y2="35.56" width="0" layer="19" extent="1-1"/>
+<wire x1="11.43" y1="37.68" x2="13.97" y2="35.56" width="0" layer="19" extent="1-1"/>
 <wire x1="8.89" y1="37.68" x2="11.43" y2="37.68" width="0" layer="19" extent="1-1"/>
-<wire x1="13.97" y1="35.56" x2="11.43" y2="37.68" width="0" layer="19" extent="1-1"/>
-<wire x1="93.85" y1="51.5" x2="48.6546" y2="16.51" width="0" layer="19" extent="1-1"/>
+<wire x1="29.7926" y1="70.4" x2="8.89" y2="37.68" width="0" layer="19" extent="1-1"/>
+<wire x1="21.2074" y1="69.6" x2="29.7926" y2="70.4" width="0" layer="19" extent="1-1"/>
+<wire x1="21.2074" y1="71.2" x2="21.2074" y2="69.6" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="FTDI-RX">
+<contactref element="J1" pad="3"/>
 <contactref element="U3" pad="30"/>
-<contactref element="J1" pad="P$3"/>
-<wire x1="86.23" y1="51.5" x2="24.3" y2="74.2926" width="0" layer="19" extent="1-1"/>
+<wire x1="24.3" y1="74.2926" x2="88.8746" y2="54.53" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="FTDI-TX">
+<contactref element="J1" pad="2"/>
 <contactref element="U3" pad="31"/>
-<contactref element="J1" pad="P$2"/>
-<wire x1="83.69" y1="51.5" x2="23.5" y2="74.2926" width="0" layer="19" extent="1-1"/>
+<wire x1="23.5" y1="74.2926" x2="86.3346" y2="54.53" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="RESET">
 <contactref element="R3" pad="1"/>
@@ -1074,6 +1092,7 @@ design rules under a new name.</description>
 <wire x1="25.1" y1="74.2926" x2="42.33" y2="62.23" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="VCC">
+<contactref element="J1" pad="4"/>
 <contactref element="C5" pad="1"/>
 <contactref element="C7" pad="1"/>
 <contactref element="M1" pad="2"/>
@@ -1088,21 +1107,20 @@ design rules under a new name.</description>
 <contactref element="C15" pad="1"/>
 <contactref element="U3" pad="18"/>
 <contactref element="U3" pad="4"/>
-<contactref element="J1" pad="P$4"/>
+<wire x1="67.31" y1="70.7" x2="91.4146" y2="54.53" width="0" layer="19" extent="1-1"/>
 <wire x1="64.34" y1="70.825" x2="67.31" y2="70.7" width="0" layer="19" extent="1-1"/>
 <wire x1="60.12" y1="70.825" x2="64.34" y2="70.825" width="0" layer="19" extent="1-1"/>
 <wire x1="44.03" y1="62.23" x2="60.12" y2="70.825" width="0" layer="19" extent="1-1"/>
 <wire x1="40.64" y1="71.54" x2="44.03" y2="62.23" width="0" layer="19" extent="1-1"/>
 <wire x1="33.02" y1="74.08" x2="40.64" y2="71.54" width="0" layer="19" extent="1-1"/>
-<wire x1="29.7926" y1="68" x2="33.02" y2="74.08" width="0" layer="19" extent="1-1"/>
-<wire x1="21.2074" y1="70.4" x2="29.7926" y2="68" width="0" layer="19" extent="1-1"/>
-<wire x1="3.7846" y1="77.47" x2="21.2074" y2="70.4" width="0" layer="19" extent="1-1"/>
-<wire x1="13.97" y1="38.1" x2="21.2074" y2="70.4" width="0" layer="19" extent="1-1"/>
+<wire x1="3.7846" y1="77.47" x2="33.02" y2="74.08" width="0" layer="19" extent="1-1"/>
+<wire x1="94.6489" y1="17.1775" x2="91.4146" y2="54.53" width="0" layer="19" extent="1-1"/>
+<wire x1="92.44" y1="10.51" x2="94.6489" y2="17.1775" width="0" layer="19" extent="1-1"/>
+<wire x1="13.97" y1="38.1" x2="44.03" y2="62.23" width="0" layer="19" extent="1-1"/>
 <wire x1="11.43" y1="35.98" x2="13.97" y2="38.1" width="0" layer="19" extent="1-1"/>
 <wire x1="8.89" y1="35.98" x2="11.43" y2="35.98" width="0" layer="19" extent="1-1"/>
-<wire x1="88.77" y1="51.5" x2="11.43" y2="35.98" width="0" layer="19" extent="1-1"/>
-<wire x1="94.6489" y1="17.1775" x2="67.31" y2="70.7" width="0" layer="19" extent="1-1"/>
-<wire x1="92.44" y1="10.51" x2="94.6489" y2="17.1775" width="0" layer="19" extent="1-1"/>
+<wire x1="29.7926" y1="68" x2="8.89" y2="35.98" width="0" layer="19" extent="1-1"/>
+<wire x1="21.2074" y1="70.4" x2="29.7926" y2="68" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="RF-CE">
 <contactref element="M1" pad="3"/>
@@ -1138,6 +1156,11 @@ design rules under a new name.</description>
 <contactref element="U2" pad="SDA"/>
 <contactref element="D1" pad="C"/>
 <wire x1="3.7846" y1="69.85" x2="44.68" y2="67.31" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$13">
+<contactref element="J1" pad="1"/>
+<contactref element="C1" pad="1"/>
+<wire x1="83.7946" y1="54.53" x2="84.24" y2="58.42" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="MOTOR1">
 <contactref element="NMOS" pad="1"/>
@@ -1314,11 +1337,6 @@ design rules under a new name.</description>
 <contactref element="R9" pad="2"/>
 <contactref element="U3" pad="27"/>
 <wire x1="26.7" y1="74.2926" x2="45.2746" y2="72.39" width="0" layer="19" extent="1-1"/>
-</signal>
-<signal name="N$12">
-<contactref element="C1" pad="1"/>
-<contactref element="J1" pad="P$1"/>
-<wire x1="81.15" y1="51.5" x2="84.24" y2="58.42" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 </board>
