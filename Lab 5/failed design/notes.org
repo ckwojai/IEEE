@@ -18,3 +18,9 @@
 
 
 
+
+* BOM
+  | Description | Part#            | Quantity | Link | Datasheet |
+  |-------------+------------------+----------+------+-----------|
+  | MCU         | ATMEGA328P-AU-ND |        1 | [[http://www.digikey.com/product-detail/en/microchip-technology/ATMEGA328P-AU/ATMEGA328P-AU-ND/1832260][link]] | [[http://www.atmel.com/Images/Atmel-42735-8-bit-AVR-Microcontroller-ATmega328-328P_Datasheet.pdf][link]]      |
+  |             |                  |          |      |           |
