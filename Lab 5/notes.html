@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title></title>
+<meta name="author" content="(Wilson Chang)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="./reveal.js/css/theme/moon.css" id="theme"/>
+
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h2 class="author">Wilson Chang</h2><p class="date">Created: 2018-02-17 Sat 02:50</p>
+</section>
+<section id="table-of-contents">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#/slide-org12a2488">1. Tools</a></li>
+<li><a href="#/slide-org65bba0b">2. Some rule of thumb</a></li>
+<li><a href="#/slide-org9f1106d">3. Layout Criteria</a></li>
+<li><a href="#/slide-org35ab880">4. BOM</a></li>
+</ul>
+</div>
+</div>
+</section>
+<section>
+<section id="slide-org12a2488">
+<h2 id="org12a2488"><span class="section-number-2">1</span> Tools</h2>
+<ul>
+<li>Pad, Trace, Polygon, Drill Hole, Silkscreen</li>
+<li>ratsnest: reevaluate airwires for shortest path</li>
+<li>ripup: delete routes</li>
+<li>mirror: flip component to the other side</li>
+<li>via: for connecting routes on different layers</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org65bba0b">
+<h2 id="org65bba0b"><span class="section-number-2">2</span> Some rule of thumb</h2>
+<ul>
+<li>Trace: short and wide, increase spaces between traces</li>
+<li>Trace width: 12 mm for digital signal; 20 mm for analog; Power, GND, Motor: 30mm;</li>
+<li></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org9f1106d">
+<h2 id="org9f1106d"><span class="section-number-2">3</span> Layout Criteria</h2>
+<ul>
+<li>Everything need to be inside the board (all white frames inside): quadcopter propellers need clearance.</li>
+<li>Nothing under white frame except the Radio Module</li>
+<li>Battery JBT need to have +- on the edge of the PCB</li>
+<li>Mandatory: Top Polygon: VCC, Bottom Polygon: GND; Don't worry about Digital and Analog VCC and GND.</li>
+<li></li>
+
+</ul>
+
+
+
+
+</section>
+</section>
+<section>
+<section id="slide-org35ab880">
+<h2 id="org35ab880"><span class="section-number-2">4</span> BOM</h2>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Description</th>
+<th scope="col" class="org-left">Part#</th>
+<th scope="col" class="org-right">Package</th>
+<th scope="col" class="org-right">Quantity</th>
+<th scope="col" class="org-left">Link</th>
+<th scope="col" class="org-left">Datasheet</th>
+<th scope="col" class="org-left">Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">MCU</td>
+<td class="org-left">ATMEGA328P-AU-ND</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">1</td>
+<td class="org-left"><a href="http://www.digikey.com/product-detail/en/microchip-technology/ATMEGA328P-AU/ATMEGA328P-AU-ND/1832260">link</a></td>
+<td class="org-left"><a href="http://www.atmel.com/Images/Atmel-42735-8-bit-AVR-Microcontroller-ATmega328-328P_Datasheet.pdf">link</a></td>
+<td class="org-left">Default</td>
+</tr>
+
+<tr>
+<td class="org-left">Cap: 1uF</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">0603</td>
+<td class="org-right">1</td>
+<td class="org-left"><a href="https://www.digikey.com/product-detail/en/knowles-novacap/0603BB105K160YT/1763-1175-1-ND/7304294">link</a></td>
+<td class="org-left"><a href="http://www.knowlescapacitors.com/getattachment/6c8d48ef-fc2b-4752-ae2c-ce6c208de0c4/High-Capacitance-Chip.aspx">link</a></td>
+<td class="org-left">Ceramic, Dimension</td>
+</tr>
+
+<tr>
+<td class="org-left">Cap: 100nF</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">0603</td>
+<td class="org-right">6</td>
+<td class="org-left"><a href="https://www.mouser.com/ProductDetail/KEMET/C0603C104K5RECAUTO?qs=sGAEpiMZZMs0AnBnWHyRQKLP9quIYhdRm6YNOLxLXq7E7ljiRP9cnQ%3d%3d">link</a></td>
+<td class="org-left"><a href="https://www.mouser.com/ds/2/212/KEM_C1090_X7R_ESD-1103328.pdf">link</a></td>
+<td class="org-left">Ceramic, Dimension</td>
+</tr>
+
+<tr>
+<td class="org-left">Cap: 10uF</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">0603</td>
+<td class="org-right">3</td>
+<td class="org-left"><a href="https://www.digikey.com/product-detail/en/taiyo-yuden/JMK107BJ106MA-T/587-1256-1-ND/931033">link</a></td>
+<td class="org-left"><a href="https://www.yuden.co.jp/productdata/catalog/mlcc_all_e.pdf">link</a></td>
+<td class="org-left">Ceramic, Dimension</td>
+</tr>
+
+<tr>
+<td class="org-left">Cap: 100uF</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">1206</td>
+<td class="org-right">4</td>
+<td class="org-left"><a href="https://www.digikey.com/product-detail/en/murata-electronics-north-america/GRM31CR60J107KE39L/490-13982-1-ND/6155812">link</a></td>
+<td class="org-left"><a href="https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM31CR60J107KE39-01.pdf">link</a></td>
+<td class="org-left">Ceramic</td>
+</tr>
+
+<tr>
+<td class="org-left">Res: 2.2k</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">0603</td>
+<td class="org-right">6</td>
+<td class="org-left"><a href="https://www.mouser.com/ProductDetail/Vishay/CRCW02012K20JNED?qs=sGAEpiMZZMvdGkrng054tx3Kv%252bhbWMRFaxxOJx%252bImNQ%3d">link</a></td>
+<td class="org-left"><a href="https://www.mouser.com/ds/2/427/crcw0201e3-239671.pdf">link</a></td>
+<td class="org-left">Dimension</td>
+</tr>
+
+<tr>
+<td class="org-left">Res: 10k</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">0603</td>
+<td class="org-right">5</td>
+<td class="org-left"><a href="https://www.mouser.com/ProductDetail/Yageo/RE0603BRE0710KL?qs=sGAEpiMZZMvdGkrng054t%2fEV866paE0hhMI%2fxeoFNEJCU72vYWvGgQ%3d%3d">link</a></td>
+<td class="org-left"><a href="https://www.mouser.com/ds/2/447/PYu-RE_105_RoHS_L_6-1116121.pdf">link</a></td>
+<td class="org-left">Dimension</td>
+</tr>
+
+<tr>
+<td class="org-left">MOSFET</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">4</td>
+<td class="org-left"><a href="https://www.mouser.com/productdetail/?qs=9%252bKlkBgLFf1HkY%2F2U%252bIhLQ%3D%3D">link</a></td>
+<td class="org-left"><a href="https://www.mouser.com/ds/2/196/irlml6244pbf-1228275.pdf">link</a></td>
+<td class="org-left">Drain Current &gt; 5A</td>
+</tr>
+
+<tr>
+<td class="org-left">Diode</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">4</td>
+<td class="org-left"><a href="https://www.digikey.com/product-detail/en/panasonic-electronic-components/DB2W40300L/DB2W40300LCT-ND/3884376">link</a></td>
+<td class="org-left"><a href="https://industrial.panasonic.com/content/data/SC/ds/ds4/DB2W40300L_E.pdf">link</a></td>
+<td class="org-left">Current 3A</td>
+</tr>
+
+<tr>
+<td class="org-left">LED</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">4</td>
+<td class="org-left"><a href="https://www.digikey.com/product-detail/en/lite-on-inc/LTST-C191KFKT/160-1445-2-ND/386833">link</a></td>
+<td class="org-left"><a href="http://optoelectronics.liteon.com/upload/download/DS22-2000-222/LTST-C191KFKT.pdf">link</a></td>
+<td class="org-left">Dimension</td>
+</tr>
+
+<tr>
+<td class="org-left">Push Button</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">1</td>
+<td class="org-left"><a href="https://www.mouser.com/ProductDetail/E-Switch/LL3301NF065QG?qs=sGAEpiMZZMvxtGF7dlGNpqqmTFthXBmf0KM%252bqj1KR%252bA%3d">link</a></td>
+<td class="org-left"><a href="https://www.mouser.com/ds/2/140/P090002-267756.pdf">link</a></td>
+<td class="org-left">IDK</td>
+</tr>
+
+<tr>
+<td class="org-left">Voltage Regulator</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">1</td>
+<td class="org-left"><a href="https://www.digikey.com/product-detail/en/microchip-technology/MCP1252-33X50I-MS/MCP1252-33X50I-MS-ND/529831">link</a></td>
+<td class="org-left"><a href="http://ww1.microchip.com/downloads/en/DeviceDoc/20001752C.pdf">link</a></td>
+<td class="org-left">Step-up AND down, &gt;100 mA output current</td>
+</tr>
+
+<tr>
+<td class="org-left">Oscillator</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">1</td>
+<td class="org-left"><a href="https://www.digikey.com/product-detail/en/maxim-integrated/MAX7375AXR805-T/MAX7375AXR805-TCT-ND/4967873">link</a></td>
+<td class="org-left"><a href="https://datasheets.maximintegrated.com/en/ds/MAX7375.pdf">link</a></td>
+<td class="org-left">8-10MHz, minimum pins and extra parts</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">value</th>
+<th scope="col" class="org-right">sin</th>
+<th scope="col" class="org-right">cos</th>
+<th scope="col" class="org-right">tan</th>
+<th scope="col" class="org-right">angle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">3</td>
+<td class="org-right">4</td>
+<td class="org-right">5</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</div>
+</div>
+<script src="./reveal.js/lib/js/head.min.js"></script>
+<script src="./reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>

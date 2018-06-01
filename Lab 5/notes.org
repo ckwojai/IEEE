@@ -1,0 +1,57 @@
+* Tools
+  - Pad, Trace, Polygon, Drill Hole, Silkscreen
+  - ratsnest: reevaluate airwires for shortest path
+  - ripup: delete routes
+  - mirror: flip component to the other side
+  - via: for connecting routes on different layers 
+* Some rule of thumb
+  - Trace: short and wide, increase spaces between traces
+  - Trace width: 12 mm for digital signal; 20 mm for analog; Power, GND, Motor: 30mm;
+  - 
+* Layout Criteria
+  - Everything need to be inside the board (all white frames inside): quadcopter propellers need clearance.
+  - Nothing under white frame except the Radio Module
+  - Battery JBT need to have +- on the edge of the PCB
+  - Mandatory: Top Polygon: VCC, Bottom Polygon: GND; Don't worry about Digital and Analog VCC and GND.
+  - 
+
+
+
+
+* BOM
+  | Description       | Part#            | Package | Quantity | Link | Datasheet | Criteria                                 |
+  |-------------------+------------------+---------+----------+------+-----------+------------------------------------------|
+  | MCU               | ATMEGA328P-AU-ND |         |        1 | [[http://www.digikey.com/product-detail/en/microchip-technology/ATMEGA328P-AU/ATMEGA328P-AU-ND/1832260][link]] | [[http://www.atmel.com/Images/Atmel-42735-8-bit-AVR-Microcontroller-ATmega328-328P_Datasheet.pdf][link]]      | Default                                  |
+  | Cap: 1uF          |                  |    0603 |        1 | [[https://www.digikey.com/product-detail/en/knowles-novacap/0603BB105K160YT/1763-1175-1-ND/7304294][link]] | [[http://www.knowlescapacitors.com/getattachment/6c8d48ef-fc2b-4752-ae2c-ce6c208de0c4/High-Capacitance-Chip.aspx][link]]      | Ceramic, Dimension                       |
+  | Cap: 100nF        |                  |    0603 |        6 | [[https://www.mouser.com/ProductDetail/KEMET/C0603C104K5RECAUTO?qs=sGAEpiMZZMs0AnBnWHyRQKLP9quIYhdRm6YNOLxLXq7E7ljiRP9cnQ%253d%253d][link]] | [[https://www.mouser.com/ds/2/212/KEM_C1090_X7R_ESD-1103328.pdf][link]]      | Ceramic, Dimension                       |
+  | Cap: 10uF         |                  |    0603 |        3 | [[https://www.digikey.com/product-detail/en/taiyo-yuden/JMK107BJ106MA-T/587-1256-1-ND/931033][link]] | [[https://www.yuden.co.jp/productdata/catalog/mlcc_all_e.pdf][link]]      | Ceramic, Dimension                       |
+  | Cap: 100uF        |                  |    1206 |        4 | [[https://www.digikey.com/product-detail/en/murata-electronics-north-america/GRM31CR60J107KE39L/490-13982-1-ND/6155812][link]] | [[https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM31CR60J107KE39-01.pdf][link]]      | Ceramic                                  |
+  | Res: 2.2k         |                  |    0603 |        6 | [[https://www.mouser.com/ProductDetail/Vishay/CRCW02012K20JNED?qs=sGAEpiMZZMvdGkrng054tx3Kv%25252bhbWMRFaxxOJx%25252bImNQ%253d][link]] | [[https://www.mouser.com/ds/2/427/crcw0201e3-239671.pdf][link]]      | Dimension                                |
+  | Res: 10k          |                  |    0603 |        5 | [[https://www.mouser.com/ProductDetail/Yageo/RE0603BRE0710KL?qs=sGAEpiMZZMvdGkrng054t%252fEV866paE0hhMI%252fxeoFNEJCU72vYWvGgQ%253d%253d][link]] | [[https://www.mouser.com/ds/2/447/PYu-RE_105_RoHS_L_6-1116121.pdf][link]]      | Dimension                                |
+  | MOSFET            |                  |         |        4 | [[https://www.mouser.com/productdetail/?qs=9%25252bKlkBgLFf1HkY%252F2U%25252bIhLQ%253D%253D][link]] | [[https://www.mouser.com/ds/2/196/irlml6244pbf-1228275.pdf][link]]      | Drain Current > 5A                       |
+  | Diode             |                  |         |        4 | [[https://www.digikey.com/product-detail/en/panasonic-electronic-components/DB2W40300L/DB2W40300LCT-ND/3884376][link]] | [[https://industrial.panasonic.com/content/data/SC/ds/ds4/DB2W40300L_E.pdf][link]]      | Current 3A                               |
+  | LED               |                  |         |        4 | [[https://www.digikey.com/product-detail/en/lite-on-inc/LTST-C191KFKT/160-1445-2-ND/386833][link]] | [[http://optoelectronics.liteon.com/upload/download/DS22-2000-222/LTST-C191KFKT.pdf][link]]      | Dimension                                |
+  | Tactile Switch    |                  |         |        1 | [[https://www.digikey.com/product-detail/en/e-switch/TL3315NF100Q/EG4620CT-ND/1870400][link]] | [[https://media.digikey.com/pdf/Data%2520Sheets/E-Switch%2520PDFs/TL3315.pdf][link]]      | Tactile, OFF-MOM                         |
+  | Voltage Regulator |                  |         |        1 | [[https://www.digikey.com/product-detail/en/microchip-technology/MCP1252-33X50I-MS/MCP1252-33X50I-MS-ND/529831][link]] | [[http://ww1.microchip.com/downloads/en/DeviceDoc/20001752C.pdf][link]]      | Step-up AND down, >100 mA output current |
+  | Oscillator        |                  |         |        1 | [[https://www.digikey.com/product-detail/en/maxim-integrated/MAX7375AXR805-T/MAX7375AXR805-TCT-ND/4967873][link]] | [[https://datasheets.maximintegrated.com/en/ds/MAX7375.pdf][link]]      | 8-10MHz, minimum pins and extra parts    |
+
+
+
+| value | sin | cos | tan | angle |
+|-------+-----+-----+-----+-------|
+|     1 |   2 |   3 |   4 |     5 |
+|       |     |     |     |       |
+|       |     |     |     |       |
+|       |     |     |     |       |
+|       |     |     |     |       |
+|       |     |     |     |       |
+|       |     |     |     |       |
+|       |     |     |     |       |
+|       |     |     |     |       |
+|       |     |     |     |       |
+|       |     |     |     |       |
+|       |     |     |     |       |
+|       |     |     |     |       |
+|       |     |     |     |       |
+|       |     |     |     |       |
+|       |     |     |     |       |

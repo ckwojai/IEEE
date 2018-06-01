@@ -1,5 +1,5 @@
 #include <Wire.h>
-#include <sensor_fusion.h>
+#include "sensor_fusion.h"
 const unsigned int N = 50;
 int16_t x_acc_arr[N];
 int16_t y_acc_arr[N];
@@ -41,6 +41,7 @@ void setup()
   uint8_t gyro = 0;
   uint8_t config = 0;
   readReg(PWR_MGMT_1, &pwr, 1);
+  Serial.print(PWR_MGMT_1);
   readReg(GYRO_CONFIG, &gyro, 1);
   readReg(CONFIG, &config, 1);
   pwr = pwr & 0b10111111;
@@ -198,15 +199,21 @@ void loop()
     x_g = x_g - bias_x_g;
     y_g = y_g - bias_y_g;
     z_g = z_g - bias_z_g;
+    /* Accelerometer */
+    vector acc_vec;
+    acc_vec.x = x_a;
+    acc_vec.y = y_a;
+    acc_vec.z = z_a;
+    vector_normalize(&acc_vec, &acc_vec);
     /* Gyroscope */
+    vector gyr_vec;
+    quaternion gyr_qua;
     int16_t x_g_rate;
     int16_t y_g_rate;
     int16_t z_g_rate;
     x_g_rate = x_g / 16.4; //- x_g_old;
     y_g_rate = y_g /16.4; //- y_g_old;
     z_g_rate = z_g /16.4; //- z_g_old;
-    vector gyr_vec;
-    quaternion gyr_qua;
     gyr_vec.x = x_g_rate;
     gyr_vec.y = y_g_rate;
     gyr_vec.z = z_g_rate;
@@ -217,21 +224,8 @@ void loop()
     gyr_vec_axis.x = gyr_vec.x;
     gyr_vec_axis.y = gyr_vec.y;
     gyr_vec_axis.z = gyr_vec.z;
-    //Serial.print(mag);
-    //Serial.print(currentMillis - previousMillis);
-//    Serial.print(x_g_rate);
-//    Serial.print(" ");
-//    Serial.print(y_g_rate);
-//    Serial.print(" ");
-//    Serial.print(z_g_rate);
-//    Serial.print(" ");
     previousMillis = currentMillis;
-    /* Accelerometer */
-    vector acc_vec;
-    acc_vec.x = x_a;
-    acc_vec.y = y_a;
-    acc_vec.z = z_a;
-    vector_normalize(&acc_vec, &acc_vec);
+    
     
    
    vector acc_vec_fil;

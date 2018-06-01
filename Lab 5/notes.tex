@@ -1,0 +1,106 @@
+% Created 2018-02-17 Sat 02:49
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Wilson Chang}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Wilson Chang},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 25.3.1 (Org mode 9.1.6)}, 
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+\section{Tools}
+\label{sec:org7c74fd7}
+\begin{itemize}
+\item Pad, Trace, Polygon, Drill Hole, Silkscreen
+\item ratsnest: reevaluate airwires for shortest path
+\item ripup: delete routes
+\item mirror: flip component to the other side
+\item via: for connecting routes on different layers
+\end{itemize}
+\section{Some rule of thumb}
+\label{sec:orga9969b8}
+\begin{itemize}
+\item Trace: short and wide, increase spaces between traces
+\item Trace width: 12 mm for digital signal; 20 mm for analog; Power, GND, Motor: 30mm;
+\item 
+\end{itemize}
+\section{Layout Criteria}
+\label{sec:org05233ab}
+\begin{itemize}
+\item Everything need to be inside the board (all white frames inside): quadcopter propellers need clearance.
+\item Nothing under white frame except the Radio Module
+\item Battery JBT need to have +- on the edge of the PCB
+\item Mandatory: Top Polygon: VCC, Bottom Polygon: GND; Don't worry about Digital and Analog VCC and GND.
+\item 
+\end{itemize}
+
+
+
+
+\section{BOM}
+\label{sec:org53a2830}
+\begin{center}
+\begin{tabular}{llrrlll}
+Description & Part\# & Package & Quantity & Link & Datasheet & Criteria\\
+\hline
+MCU & ATMEGA328P-AU-ND &  & 1 & \href{http://www.digikey.com/product-detail/en/microchip-technology/ATMEGA328P-AU/ATMEGA328P-AU-ND/1832260}{link} & \href{http://www.atmel.com/Images/Atmel-42735-8-bit-AVR-Microcontroller-ATmega328-328P\_Datasheet.pdf}{link} & Default\\
+Cap: 1uF &  & 0603 & 1 & \href{https://www.digikey.com/product-detail/en/knowles-novacap/0603BB105K160YT/1763-1175-1-ND/7304294}{link} & \href{http://www.knowlescapacitors.com/getattachment/6c8d48ef-fc2b-4752-ae2c-ce6c208de0c4/High-Capacitance-Chip.aspx}{link} & Ceramic, Dimension\\
+Cap: 100nF &  & 0603 & 6 & \href{https://www.mouser.com/ProductDetail/KEMET/C0603C104K5RECAUTO?qs=sGAEpiMZZMs0AnBnWHyRQKLP9quIYhdRm6YNOLxLXq7E7ljiRP9cnQ\%253d\%253d}{link} & \href{https://www.mouser.com/ds/2/212/KEM\_C1090\_X7R\_ESD-1103328.pdf}{link} & Ceramic, Dimension\\
+Cap: 10uF &  & 0603 & 3 & \href{https://www.digikey.com/product-detail/en/taiyo-yuden/JMK107BJ106MA-T/587-1256-1-ND/931033}{link} & \href{https://www.yuden.co.jp/productdata/catalog/mlcc\_all\_e.pdf}{link} & Ceramic, Dimension\\
+Cap: 100uF &  & 1206 & 4 & \href{https://www.digikey.com/product-detail/en/murata-electronics-north-america/GRM31CR60J107KE39L/490-13982-1-ND/6155812}{link} & \href{https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM31CR60J107KE39-01.pdf}{link} & Ceramic\\
+Res: 2.2k &  & 0603 & 6 & \href{https://www.mouser.com/ProductDetail/Vishay/CRCW02012K20JNED?qs=sGAEpiMZZMvdGkrng054tx3Kv\%25252bhbWMRFaxxOJx\%25252bImNQ\%253d}{link} & \href{https://www.mouser.com/ds/2/427/crcw0201e3-239671.pdf}{link} & Dimension\\
+Res: 10k &  & 0603 & 5 & \href{https://www.mouser.com/ProductDetail/Yageo/RE0603BRE0710KL?qs=sGAEpiMZZMvdGkrng054t\%252fEV866paE0hhMI\%252fxeoFNEJCU72vYWvGgQ\%253d\%253d}{link} & \href{https://www.mouser.com/ds/2/447/PYu-RE\_105\_RoHS\_L\_6-1116121.pdf}{link} & Dimension\\
+MOSFET &  &  & 4 & \href{https://www.mouser.com/productdetail/?qs=9\%25252bKlkBgLFf1HkY\%252F2U\%25252bIhLQ\%253D\%253D}{link} & \href{https://www.mouser.com/ds/2/196/irlml6244pbf-1228275.pdf}{link} & Drain Current > 5A\\
+Diode &  &  & 4 & \href{https://www.digikey.com/product-detail/en/panasonic-electronic-components/DB2W40300L/DB2W40300LCT-ND/3884376}{link} & \href{https://industrial.panasonic.com/content/data/SC/ds/ds4/DB2W40300L\_E.pdf}{link} & Current 3A\\
+LED &  &  & 4 & \href{https://www.digikey.com/product-detail/en/lite-on-inc/LTST-C191KFKT/160-1445-2-ND/386833}{link} & \href{http://optoelectronics.liteon.com/upload/download/DS22-2000-222/LTST-C191KFKT.pdf}{link} & Dimension\\
+Push Button &  &  & 1 & \href{https://www.mouser.com/ProductDetail/E-Switch/LL3301NF065QG?qs=sGAEpiMZZMvxtGF7dlGNpqqmTFthXBmf0KM\%25252bqj1KR\%25252bA\%253d}{link} & \href{https://www.mouser.com/ds/2/140/P090002-267756.pdf}{link} & IDK\\
+Voltage Regulator &  &  & 1 & \href{https://www.digikey.com/product-detail/en/microchip-technology/MCP1252-33X50I-MS/MCP1252-33X50I-MS-ND/529831}{link} & \href{http://ww1.microchip.com/downloads/en/DeviceDoc/20001752C.pdf}{link} & Step-up AND down, >100 mA output current\\
+Oscillator &  &  & 1 & \href{https://www.digikey.com/product-detail/en/maxim-integrated/MAX7375AXR805-T/MAX7375AXR805-TCT-ND/4967873}{link} & \href{https://datasheets.maximintegrated.com/en/ds/MAX7375.pdf}{link} & 8-10MHz, minimum pins and extra parts\\
+\end{tabular}
+\end{center}
+
+
+
+\begin{center}
+\begin{tabular}{rrrrr}
+value & sin & cos & tan & angle\\
+\hline
+1 & 2 & 3 & 4 & 5\\
+ &  &  &  & \\
+ &  &  &  & \\
+ &  &  &  & \\
+ &  &  &  & \\
+ &  &  &  & \\
+ &  &  &  & \\
+ &  &  &  & \\
+ &  &  &  & \\
+ &  &  &  & \\
+ &  &  &  & \\
+ &  &  &  & \\
+ &  &  &  & \\
+ &  &  &  & \\
+ &  &  &  & \\
+ &  &  &  & \\
+\end{tabular}
+\end{center}
+\end{document}
