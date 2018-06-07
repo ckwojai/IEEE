@@ -2,6 +2,33 @@
 #include <Wire.h>
 #include "sensor_fusion.h"
 
+void apdata_add(struct apdata* a1, struct apdata* a2, struct apdata* result) {
+  result->roll = a1->roll + a2->roll;
+  result->pitch = a1->pitch + a2->pitch;  
+  result->m1sp = a1->m1sp + a2->m1sp;
+  result->m2sp = a1->m2sp + a2->m2sp;
+  result->m3sp = a1->m3sp + a2->m3sp;
+  result->m4sp = a1->m4sp + a2->m4sp;  
+}
+void apdata_minus(struct apdata* a1, struct apdata* a2, struct apdata* result) {
+  result->roll = a1->roll - a2->roll;
+  result->pitch = a1->pitch - a2->pitch;    
+  result->m1sp = a1->m1sp - a2->m1sp;
+  result->m2sp = a1->m2sp - a2->m2sp;
+  result->m3sp = a1->m3sp - a2->m3sp;
+  result->m4sp = a1->m4sp - a2->m4sp;  
+}
+
+void setData(struct apdata* d, float roll, float pitch, float m1sp, float m2sp, float m3sp, float m4sp) {
+  d->roll = roll;
+  d->pitch = pitch;
+  d->m1sp = m1sp;
+  d->m2sp = m2sp;
+  d->m3sp = m3sp;
+  d->m4sp = m4sp;  
+}
+
+
 void readReg(uint8_t reg, uint8_t *buf, size_t len)
 {
     // TODO: Implement

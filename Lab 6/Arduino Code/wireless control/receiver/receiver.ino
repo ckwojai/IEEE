@@ -22,23 +22,24 @@ void setup() {
 }
 void loop() {
   radio.startListening();
-  apdata idk;
+  // Serial.println("Listening!");
+  float idk;
   // Serial.println("Listening");
     if(radio.available()){
        while (radio.available()) {            
         radio.read(&idk,sizeof(idk));
        }
-  Serial.print(idk.roll);
-  Serial.print("   ");
-  Serial.print(idk.pitch);
-  Serial.print("   ");
-  Serial.print(idk.m1sp);
-  Serial.print("   ");
-  Serial.print(idk.m2sp);
-  Serial.print("   ");
-  Serial.print(idk.m3sp);
-  Serial.print("   ");
-  Serial.println(idk.m4sp);
+	   Serial.println(idk);
+  // Serial.print(idk.roll);
+  // Serial.print("   ");
+  // Serial.print(idk.pitch);
+  // Serial.print("   ");
+  // Serial.print(idk.m1sp);
+  // Serial.print("   ");
+  // Serial.print(idk.m2sp);
+  // Serial.print("   ");
+  // Serial.print(idk.m3sp);
+  // Serial.print("   ");
+  // Serial.println(idk.m4sp);
   }
-
 }

@@ -28,17 +28,21 @@ void loop() {
        while (radio.available()) {            
         radio.read(&idk,sizeof(idk));
        }
-  Serial.print(idk.roll);
-  Serial.print("   ");
-  Serial.print(idk.pitch);
-  Serial.print("   ");
-  Serial.print(idk.m1sp);
-  Serial.print("   ");
-  Serial.print(idk.m2sp);
-  Serial.print("   ");
-  Serial.print(idk.m3sp);
-  Serial.print("   ");
-  Serial.println(idk.m4sp);
+	   printData(&idk);
   }
 
+}
+
+void printData(const struct apdata* d) {
+  Serial.print(d->roll);
+  Serial.print("  ");
+  Serial.print(d->pitch);
+  Serial.print("  ");  
+  Serial.print(d->m1sp);
+  Serial.print("  ");  
+  Serial.print(d->m2sp);
+  Serial.print("  ");  
+  Serial.print(d->m3sp);
+  Serial.print("  ");  
+  Serial.println(d->m4sp);
 }

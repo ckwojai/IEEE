@@ -10,6 +10,7 @@ RF24 radio(9,10);
 #define m2pin 6
 #define m3pin 9
 #define m4pin 3
+#define ledpin 4
 // Fusion Variable
 int16_t x_a = 0;
 int16_t y_a = 0;
@@ -26,40 +27,190 @@ int16_t bias_z_a = 0;
 int16_t bias_x_g = 0; 
 int16_t bias_y_g = 0;
 int16_t bias_z_g = 0;
-int16_t count = 0;
+
 unsigned long previousMillis = 0;
 float alpha = 0.33;
 vector acc_vec;
 vector gyr_vec;
 vector fil_vec;
-apdata mdata;
-
+// For PID
+apdata qdata;
+apdata qdata_old;
+apdata Ierr;
+apdata Derr;
+// IDKWTI
+int numCycle = 50;
+int iter = 0;
 void setup() {
   Serial.begin(9600);
-  sensorSetup(50);
-  radioSetup();
+  pinMode(ledpin, OUTPUT);
+  // radioSetup();
+  checkVolt();
+  sensorSetup(100);
+  // setData(&qdata, 0, 0, 25, 25, 25, 25);
+  Serial.print("Reseting Data!!!");
+  delay(1000);
+  // setData(&qdata, 0, 0, 25, 25, 25, 25);
+  // setData(&qdata, 0, 0, 65, 65, 65, 65);    
+  setData(&qdata, 0, 0, 75, 75, 75, 75);
+  // setData(&qdata, 0, 0, 80, 80, 80, 80);
+  // setData(&qdata, 0, 0, 70, 70, 70, 70);
+  
+  // setData(&Ierr, 0, 0, 0, 0, 0, 0);
+  // setData(&qdata, 0, 0, 100, 100, 100, 100);
+  controlSpeed(&qdata);
+  qdata_old = qdata;
+  delay(2000);
 }
-
 void loop() {
-  getAngle(&mdata);
-  radio.write(&mdata, sizeof(mdata));
-  controlSpeed(&mdata,10,0,0,0);
-  printData(&mdata);
+  if (iter < numCycle) {
+	getAngle(&qdata);
+	apdata_add(&Ierr, &qdata, &Ierr); // need to add bound of err sum
+	apdata_minus(&qdata, &qdata_old, &Derr);
+	int P_roll = 7;
+	int I_roll = 0;
+	int D_roll = 1;  
+	int P_pitch = 7;
+	int I_pitch = 0;
+	int D_pitch = 1;	
+	// int P_roll = 2;
+	// int I_roll = 0.5;
+	// int D_roll = 1;  
+	// int P_pitch = 2;
+	// int I_pitch = 0.5;
+	// int D_pitch = 1;
+	// int P_roll = 3;
+	// int I_roll = 0;
+	// int D_roll = 2;  
+	// int P_pitch = 3;
+	// int I_pitch = 0;
+	// int D_pitch = 2;
+	// This look okay?
+	// int P_roll = 4;
+	// int I_roll = 0;
+	// int D_roll = 3;  
+	// int P_pitch = 4;
+	// int I_pitch = 0;
+	// int D_pitch = 3;
+	// int P_roll = 4;
+	// int I_roll = 0;
+	// int D_roll = 4;  
+	// int P_pitch = 4;
+	// int I_pitch = 0;
+	// int D_pitch = 4;
+	// int P_roll = 4;
+	// int I_roll = 0.5;
+	// int D_roll = 2;  
+	// int P_pitch = 4;
+	// int I_pitch = 0.5;
+	// int D_pitch = 2;
+	// ==========
+	// ROLL PID
+	// ==========
+	// Proportional
+	apdata Pcorr_roll;
+	Pcorr_roll.m1sp = -qdata.roll*P_roll;
+	Pcorr_roll.m2sp = -qdata.roll*P_roll;
+	Pcorr_roll.m3sp = qdata.roll*P_roll;
+	Pcorr_roll.m4sp = qdata.roll*P_roll;
+	// Integral
+	apdata Icorr_roll;
+	Icorr_roll.m1sp = -Ierr.roll*I_roll;
+	Icorr_roll.m2sp = -Ierr.roll*I_roll;
+	Icorr_roll.m3sp = Ierr.roll*I_roll;
+	Icorr_roll.m4sp = Ierr.roll*I_roll;  
+	// Derivative
+	apdata Dcorr_roll;
+	apdata Derr_roll;
+	Dcorr_roll.m1sp = -Derr.roll*D_roll;
+	Dcorr_roll.m2sp = -Derr.roll*D_roll;
+	Dcorr_roll.m3sp = Derr.roll*D_roll;
+	Dcorr_roll.m4sp = Derr.roll*D_roll;
+	// Total Correction
+	apdata Tcorr_roll;
+	apdata_add(&Pcorr_roll, &Icorr_roll, &Tcorr_roll);
+	apdata_add(&Tcorr_roll, &Dcorr_roll, &Tcorr_roll);
+	// printData(&Pcorr_roll);    
+	// printData(&Icorr_roll);
+	// printData(&Dcorr_roll);
+	// printData(&Tcorr_roll);
+	// Serial.println("============================================================");
+	// // ==========
+	// // PITCH PID 
+	// // ==========
+	// Proportional
+	apdata Pcorr_pitch;
+	Pcorr_pitch.m1sp = -qdata.pitch*P_pitch;
+	Pcorr_pitch.m4sp = -qdata.pitch*P_pitch;
+	Pcorr_pitch.m2sp = qdata.pitch*P_pitch;
+	Pcorr_pitch.m3sp = qdata.pitch*P_pitch;
+	// Integral
+	apdata Icorr_pitch;
+	Icorr_pitch.m1sp = -Ierr.pitch*I_pitch;
+	Icorr_pitch.m4sp = -Ierr.pitch*I_pitch;
+	Icorr_pitch.m2sp = Ierr.pitch*I_pitch;
+	Icorr_pitch.m3sp = Ierr.pitch*I_pitch;  
+	// Derivative
+	apdata Dcorr_pitch;
+	apdata Derr_pitch;
+	Dcorr_pitch.m1sp = -Derr.pitch*D_pitch;
+	Dcorr_pitch.m4sp = -Derr.pitch*D_pitch;
+	Dcorr_pitch.m2sp = Derr.pitch*D_pitch;
+	Dcorr_pitch.m3sp = Derr.pitch*D_pitch;
+
+	// Total Correction
+	apdata Tcorr_pitch;
+	apdata_add(&Pcorr_pitch, &Icorr_pitch, &Tcorr_pitch);
+	apdata_add(&Tcorr_pitch, &Dcorr_pitch, &Tcorr_pitch);
+
+	// Serial.println(qdata.pitch);
+	// printData(&Pcorr_pitch);    
+	// printData(&Icorr_pitch);
+	// printData(&Dcorr_pitch);
+	// printData(&Tcorr_pitch);
+	// Serial.println("============================================================");
+	qdata_old = qdata;
+	// ===========================
+	// Control Speed
+	// ===========================
+	printData(&qdata);
+	apdata Tcorr;
+	apdata_add(&Tcorr_roll, &Tcorr_pitch, &Tcorr);
+	// printData(&Tcorr_roll);
+	// printData(&Tcorr_pitch);  
+	apdata_add(&qdata, &Tcorr, &qdata);
+	printData(&qdata);
+	Serial.println("============================================================");
+	// radio.write(&qdata, sizeof(qdata));
+	checkBound(&qdata);
+	controlSpeed(&qdata);
+	iter++;
+  } else {
+	setData(&qdata, 0, 0, 0, 0, 0, 0);
+	controlSpeed(&qdata);
+  }
+}
+void checkVolt() {
+  int rawReading = analogRead(A3);
+  float voltage = rawReading * (3.7 / 1023.0);
+  // Serial.print("BATTERY LEVEL IS:    ");
+  // Serial.println(voltage);
+  // radio.write(&voltage, sizeof(float));
+  if (voltage < 3.5 / 2) {
+	digitalWrite(ledpin, HIGH);
+  } else {
+	digitalWrite(ledpin, LOW);
+  }
+}
+void boundIsum(struct apdata* d) {
   
-  getAngle(&mdata);
-  radio.write(&mdata, sizeof(mdata));  
-  controlSpeed(&mdata,0,10,0,0);
-  printData(&mdata);
-  
-  getAngle(&mdata);
-  radio.write(&mdata, sizeof(mdata));
-  controlSpeed(&mdata,0,0,10,0);
-  printData(&mdata);
-  
-  getAngle(&mdata);
-  radio.write(&mdata, sizeof(mdata));
-  controlSpeed(&mdata,0,0,0,10);
-  printData(&mdata);  
+}
+void checkBound(struct apdata* d) {
+  // make sure pwm signal is between 0 and 255 before passing it into controlSpeed()
+  d->m1sp = (d->m1sp <= 255) * (d->m1sp > 0) * d->m1sp + (d->m1sp > 255) * 255;
+  d->m2sp = (d->m2sp <= 255) * (d->m2sp > 0) * d->m2sp + (d->m2sp > 255) * 255;
+  d->m3sp = (d->m3sp <= 255) * (d->m3sp > 0) * d->m3sp + (d->m3sp > 255) * 255;
+  d->m4sp = (d->m4sp <= 255) * (d->m4sp > 0) * d->m4sp + (d->m4sp > 255) * 255;  
 }
 void printData(const struct apdata* d) {
   Serial.print(d->roll);
@@ -82,17 +233,20 @@ void radioSetup() {
   radio.openWritingPipe(0xC2C2C2C2C2);
   radio.setCRCLength(RF24_CRC_16);
   printf_begin();
+  Serial.println("Prining shits out!!");
   radio.printDetails();  
 }
-void controlSpeed(struct apdata* sp, int m1sp, int m2sp, int m3sp, int m4sp) {
-  sp->m1sp = m1sp;
-  sp->m2sp = m2sp;
-  sp->m3sp = m3sp;
-  sp->m4sp = m4sp;  
+void controlSpeed(struct apdata* sp) {
   analogWrite(m1pin, sp->m1sp);
   analogWrite(m2pin, sp->m2sp);
   analogWrite(m3pin, sp->m3sp);
   analogWrite(m4pin, sp->m4sp);
+}
+void setSpeed(int m1sp, int m2sp, int m3sp, int m4sp) {
+  analogWrite(m1pin, m1sp);
+  analogWrite(m2pin, m2sp);
+  analogWrite(m3pin, m3sp);
+  analogWrite(m4pin, m4sp);
 }
 void getAngle(struct apdata* d) {
   uint8_t status = 0;
@@ -210,6 +364,7 @@ void sensorSetup(const unsigned int N) {
   writeReg(PWR_MGMT_1, &pwr, 1);
   writeReg(GYRO_CONFIG, &gyro, 1);
   writeReg(CONFIG, &config, 1);
+  int16_t count = 0;  
     while (count < N) {
     uint8_t status = 0;
     uint8_t temp = 0;

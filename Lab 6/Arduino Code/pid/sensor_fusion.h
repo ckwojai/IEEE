@@ -55,6 +55,17 @@ struct quaternion {
 };
 
 /**
+ * Adds two apdata together.
+ *
+ * from: pointer to the first apdata to be added.
+ * to: added sum to be stored
+ */
+void apdata_add(struct apdata* a1, struct apdata* a2, struct apdata* result);
+void apdata_minus(struct apdata* a1, struct apdata* a2, struct apdata* result);
+void setData(struct apdata* d, float roll, float pitch, float m1sp, float m2sp, float m3sp, float m4sp);
+
+  
+/**
  * Normalizes a vector.
  *
  * raw: pointer to the vector to be normalized.
@@ -63,6 +74,7 @@ struct quaternion {
  * returns: length of original vector
  */
 float vector_normalize(struct vector *raw, struct vector *unit);
+
 
 /**
  * Adds two vectors together.
